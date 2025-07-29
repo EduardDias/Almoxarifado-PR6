@@ -1,0 +1,418 @@
+<!-- Blog com submenus expansíveis via clique com fluidez e visual profissional -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Almoxarifado UFRJ - Guia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+    }
+    header {
+      background-color: #001c3d;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 250px;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    header img {
+      height: 40px;
+      margin-right: 1rem;
+    }
+    header h1 {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    nav {
+      width: 250px;
+      background-color: #001c3d;
+      padding-top: 5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      display: block;
+      font-size: 0.9rem;
+      transition: background 0.2s, padding-left 0.2s;
+      cursor: pointer;
+    }
+    nav a:hover {
+      background-color: #003366;
+      padding-left: 1.25rem;
+    }
+    nav .submenu,
+    nav .subsubmenu {
+      display: none;
+      flex-direction: column;
+    }
+    nav .submenu a,
+    nav .subsubmenu a {
+      font-size: 0.85rem;
+      padding-left: 2rem;
+      background-color: #00264d;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    nav .subsubmenu a {
+      padding-left: 2.5rem;
+      background-color: #003366;
+    }
+    nav .submenu a:hover,
+    nav .subsubmenu a:hover {
+      background-color: #004080;
+    }
+    .toggle-theme {
+      margin-top: auto;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #bbb;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .dark-mode nav {
+      background-color: #1e1e1e;
+    }
+    .dark-mode nav .submenu,
+    .dark-mode nav .subsubmenu {
+      background-color: #2b2b2b;
+    }
+    .dark-mode header {
+      background-color: #1e1e1e;
+    }
+    main {
+      margin-left: 250px;
+      margin-top: 80px;
+      padding: 2rem;
+      flex: 1;
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+      animation: fade 0.3s ease-in-out;
+    }
+    img.placeholder {
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem 0;
+      background-color: #ddd;
+      height: 200px;
+      display: block;
+    }
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a onclick="showTab('sobre')"><i class="fas fa-info-circle"></i> Sobre</a>
+    <div class="has-submenu">
+      <a onclick="toggleSubmenu('servicos')"><i class="fas fa-tools"></i> Serviços ▾</a>
+      <div id="servicos" class="submenu">
+        <div class="has-subsubmenu">
+          <a onclick="toggleSubmenu('rotina')">Rotina Diária ▸</a>
+          <div id="rotina" class="subsubmenu">
+            <a onclick="showTab('rotina1')">Checklist Diário</a>
+            <a onclick="showTab('rotina2')">Recebimento de Material</a>
+          </div>
+        </div>
+        <div class="has-subsubmenu">
+          <a onclick="toggleSubmenu('estoque')">Controle de Estoque ▸</a>
+          <div id="estoque" class="subsubmenu">
+            <a onclick="showTab('estoque1')">Entrada de Materiais</a>
+            <a onclick="showTab('estoque2')">Saída de Materiais</a>
+          </div>
+        </div>
+        <div class="has-subsubmenu">
+          <a onclick="toggleSubmenu('requisicao')">Processos ▸</a>
+          <div id="requisicao" class="subsubmenu">
+            <a onclick="showTab('requisicao1')">Abertura de processos</a>
+            <a onclick="showTab('requisicao2')">Atestado de Capacidade Técnica</a>
+            <a onclick="showTab('requisicao3')">Processo Filho </a>
+            <a onclick="showTab('requisicao4')">Processo de Pagamento</a>
+            <a onclick="showTab('requisicao5')">Processo de </a>
+            <a onclick="showTab('requisicao6')">Processo de</a>
+            <a onclick="showTab('requisicao7')">Processo de</a>
+            <a onclick="showTab('requisicao8')">Processo de</a>
+            <a onclick="showTab('requisicao9')">Processo de</a>
+          </div>
+        </div>
+        <div class="has-subsubmenu">
+          <a onclick="toggleSubmenu('patrimonio')">Controle de Patrimônio ▸</a>
+          <div id="patrimonio" class="subsubmenu">
+            <a onclick="showTab('patrimonio1')">Registro de Bens</a>
+            <a onclick="showTab('patrimonio2')">Movimentação</a>
+          </div>
+        </div>
+        <div class="has-subsubmenu">
+          <a onclick="toggleSubmenu('pagamento')">Processo de Pagamento ▸</a>
+          <div id="pagamento" class="subsubmenu">
+            <a onclick="showTab('pagamento1')">Abertura</a>
+            <a onclick="showTab('pagamento2')">Documentação</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a onclick="showTab('links')"><i class="fas fa-link"></i> Links Úteis</a>
+    <div class="toggle-theme" onclick="toggleTheme()">
+      <i class="fas fa-moon"></i> Modo Escuro
+    </div>
+  </nav>
+
+  <header>
+    <img src="/Imagens/ufrj.jpeg" alt="ufrjLogo">
+    <h1>Guia Rápido - Almoxarifado UFRJ</h1>
+  </header>
+
+  <main>
+    <section id="sobre" class="active">
+      <h2>Sobre</h2>
+      <p>Seja bem-vindo ao setor de Almoxarifado da UFRJ. Este espaço foi desenvolvido para orientar os novos servidores sobre os processos, rotinas e responsabilidades do setor.</p>
+    </section>
+    <!-- Subtópicos -->
+    <section id="rotina1"><h2>Checklist Diário</h2>
+<br>
+    <p>
+      Procedimentos para início e fim do expediente, verificação de materiais e conferência básica.
+    </p>
+<br>
+      <ul>
+        <li> fazer o café (O primeiro a chegar)</li>
+        <li> Verificar os Emails </li>
+        <li> Atualizar as Planilhas </li>
+        <li> Organizar documentos </li>
+      </ul>
+    
+    
+    </section>
+
+    <section id="rotina3"><h2>Controle de Acessos</h2><p>Identificação dos responsáveis pelo almoxarifado e controle de entrada/saída do setor.</p></section>
+    <section id="estoque1"><h2>Entrada de Materiais</h2>
+    <p>Registro no sistema de uma nova NOTA FISCAL</p>
+    <br>
+    <ul>
+      <li><H2>Cadastrando a Nota Fiscal</H2>
+        <img src="imagens/Cadastrar nota fiscal/Primeiro_passo.jpeg" alt="TelaInicial">
+      </li>
+      <br>
+      <li>
+        <h2>Selecione o tipo:</h2>
+        <p>Observação: Sempre será Extra-Orçamentária!</p>
+        <img src="imagens/Cadastrar nota fiscal/SegundoPasso.jpeg" alt="TelaSeguinte">
+      </li>
+        <br>
+        <li>
+          <h2>Com o auxilio da nota fiscal preencha as informações abaixo corretamente:</h2>
+          <img src="imagens/Cadastrar nota fiscal/Tela_cadastro.jpeg" alt="TelaCadastro">
+        </li>
+        <br>
+        <li>
+          <h2>Suas informações devem ficar mais ou menos assim:</h2>
+          <img src="imagens/Cadastrar nota fiscal/exemplo.jpeg" alt="exemplo">
+        </li>
+        <br>
+        <li>
+          <h2>Preencha a tela seguinte com as informações da NOTA FISCAL:</h2>
+          <h5>Obs: DATA DE VALIDADE E DATA DE GARANTIA NÃO precisam ser preenchidas!</h5>
+          <img src="imagens/Cadastrar nota fiscal/incluir_valorequantidade.png" alt="TelaValor">
+         </li>
+         <br>
+         <li>
+          <h2>Após preencher VERIFIQUE as informações e caso necessite CORRIJA:</h2>
+          <h5>Estando tudo certo, pode continuar!</h5>
+          <img src="imagens/Cadastrar nota fiscal/tela_posinformacoesnota.jpeg" alt="tela_PosInformacoesNota">
+         </li>
+         <li>
+          <h4>Agora é só confirmar e imprimir!</h4>
+         </li>
+    </ul>  
+  </section>
+    
+    <section id="estoque2">
+      
+      <h2>Saída e Baixa</h2>
+
+      <p>A saída de material ocorre no SISU (Links úteis), segue o passo a passo para realizar a saída de material.</p>
+
+    <br>
+
+    <ul>
+      <li><h2>Essa é sua tela inicial após realizar o login:</h2></li>
+      <br>
+      <img src="imagens/Saida de materiais/Teladelogin.jpg" alt="Teladelogin">
+      <br>
+      
+      
+      <li><h2>Após realizar login, essa será a tela inicial:</h2></li>
+      <br>
+      <img src="imagens/Saida de materiais/Menu inicial.jpeg" alt="Menu Inicial">
+      <br>
+
+
+      <li><h2>Selecione a parte de estoque e depois "Registrar Saida":</h2></li>
+      <br>
+      <img src="imagens/Saida de materiais/Menu_Estoque.jpeg" alt="Menu estoque">
+      <br>
+
+      <li><h2>Aqui você seleciona os materiais:</h2></li>
+      <br>
+      <img src="imagens/Saida de materiais/Registrodesaida.jpeg" alt="Registrodesaida">
+      <br>
+
+      <li><h2>Digite o item que será dado a baixa e clique em adicionar. Segue exemplo abaixo:</h2></li>
+      <br>
+      <img src="imagens/Saida de materiais/Exemplodebaixa.jpeg" alt="Exemplodebaixa">
+      <br>
+
+      <li><h2>Após adicionar iremos dizer o tipo de saida:</h2></li>
+      <br>
+
+      <h3>Na maioria dos casos o "Tipo de Saída" será "Saída"</h3>
+
+      <br>
+      <img src="imagens/Saida de materiais/Registrodesaida1.jpeg" alt="Registrodesaida1">
+      <br>
+
+      <li><h2>Selecionando o Destino:</h2></li>
+      <br>
+      <img src="imagens/Saida de materiais/SelecionandoDestino.jpeg" alt="SelecionandoDestino">
+      <br>
+
+      <h2>Agora é só finalizar! </h2>
+      <br>
+      <img src="imagens/Saida de materiais/FinalizandoBaixa.jpeg" alt="FinalizandoBaixa">
+      <br>
+
+      <li><h2>Depois de realizar a baixa, essa é a sua tela final:</h2></li>
+      <br>
+      <img src="imagens/Saida de materiais/fimSaida.jpeg" alt="fimSaida">
+      <br>
+
+      <h3> Agora é só imprimir DUAS cópias do arquivo e carimbar para assintaura!</h3>
+    </ul>
+
+    <br>
+    </section>
+    <section id="requisicao1"><h1>Como Iniciar um Processo:</h1>
+      <h4>Esse topico serve para QUALQUER processo.</h4>
+      <br>
+      <ul>
+        <li>
+          <h2>Essa é a tela inicial, clique em iniciar o processo:</h3>
+          <img src="imagens/Abrir processo/Iniciando o processo.jpeg" alt="iniciandoProcesso">
+          <br>
+
+          <h2>Selecione o tipo de processo:</h3>
+          <img src="imagens/Abrir processo/Escolhendo o tipo de processo.jpeg" alt="EscolhaProcesso">
+          <br>
+          <h2>Essa será a a sua tela seguinte, Não alterar o "Automático" e SEMPRE será "Público":</h3>
+          <img src="imagens/Abrir processo/publico_salvar.jpeg" alt="encerramento">
+          <br>
+          <h4>Pronto! você abriu o seu processo!</h4>
+        </li>
+      </ul>
+     
+
+    
+
+    
+    </section>
+    <section id="requisicao2">
+      
+      <h2>Atestado de Capacidade Técnica</h2> <br> <p>Introdução do que se trata</p>
+      <ul>
+        <li> <h2>Inicie um novo processo:</h2>
+      <img src="imagens/Abrir processo/Iniciando o processo.jpeg" alt="iniciandoProcesso">
+      </li>
+      <br>
+
+      <h2>Selecione o tipo de processo, abaixo contém um processo para seguir como base:</h3>
+        <p>Lembre-se de ALTERAR as informações</p>
+          <img src="imagens/Atestado de capacidade Técnica/processo_exemplo.jpeg" alt="processo_exemplo">
+          <br>
+        </li>
+
+        <li>
+          <h2>Adicionar documentos:</h2>
+          <p>Lembre-se todo PDF ou documento que você baixou entra como documento EXTERNO!</p>
+          <br>
+          <h3>Essa é a ordem que os documentos devem estar, se houver ATA de registro de preço substituir o relátorio de dispensa!</h3>
+          <img src="Imagens/Atestado de capacidade Técnica/Ordem dos documentos.jpeg"alt ="ordem dos documentos">
+        </li>
+      </ul>
+     
+    </section>
+    <section id="requisicao3"><h2>Aprovação</h2><p>Fluxo de aprovação de requisições pelo responsável da unidade.</p></section>
+    <section id="requisicao4"><h2>Aprovação</h2><p>Fluxo de aprovação de requisições pelo responsável da unidade.</p></section>
+    <section id="requisicao5"><h2>Aprovação</h2><p>Fluxo de aprovação de requisições pelo responsável da unidade.</p></section>
+    <section id="requisicao6"><h2>Aprovação</h2><p>Fluxo de aprovação de requisições pelo responsável da unidade.</p></section>
+    <section id="requisicao7"><h2>Aprovação</h2><p>Fluxo de aprovação de requisições pelo responsável da unidade.</p></section>
+    <section id="requisicao8"><h2>Aprovação</h2><p>Fluxo de aprovação de requisições pelo responsável da unidade.</p></section>
+    <section id="requisicao9"><h2>Aprovação</h2><p>Fluxo de aprovação de requisições pelo responsável da unidade.</p></section>
+    <section id="patrimonio1"><h2>Registro de Bens</h2><p>Criação de tombamento e vinculação de patrimônio à unidade.</p></section>
+    <section id="patrimonio2"><h2>Movimentação</h2><p>Transferência e baixa de bens permanentes.</p></section>
+    <section id="pagamento1"><h2>Abertura</h2><p>Iniciar processo filho no sistema, definindo tipo e acesso público.</p></section>
+    <section id="pagamento2"><h2>Documentação</h2><p>Ordem dos anexos obrigatórios no processo e uso de modelos.</p></section>
+    <section id="links">
+      <h2>Links Úteis</h2>
+      <ul>
+        <li><a href="https://www.ufrj.br/" target="_blank">Portal da UFRJ</a></li>
+        <li><a href="https://sipac.ufrj.br/" target="_blank">SIPAC</a></li>
+        <li><a href="https://www.sigepe.gov.br/" target="_blank">SIGEPE</a></li>
+        <li><a href="https://suap.ufrj.br/" target="_blank">SUAP</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) target.classList.add('active');
+    }
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+    function toggleSubmenu(id) {
+      const el = document.getElementById(id);
+      if (el.style.display === 'flex') {
+        el.style.display = 'none';
+      } else {
+        el.style.display = 'flex';
+        el.style.flexDirection = 'column';
+      }
+    }
+  </script>
+</body>
+</html>

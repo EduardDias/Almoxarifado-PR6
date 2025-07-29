@@ -1,0 +1,230 @@
+<!-- Blog com submenus como abas de conteúdo, mantendo o design anterior do menu -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Almoxarifado UFRJ - Guia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+    }
+    header {
+      background-color: #001c3d;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 200px;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    header img {
+      height: 40px;
+      margin-right: 1rem;
+    }
+    header h1 {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    nav {
+      width: 200px;
+      background-color: #001c3d;
+      padding-top: 5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      transition: background 0.2s, padding-left 0.2s;
+    }
+    nav a i {
+      margin-right: 8px;
+      min-width: 16px;
+      text-align: center;
+    }
+    nav a:hover {
+      background-color: #003366;
+      padding-left: 1.25rem;
+    }
+    nav .has-submenu:hover .submenu {
+      display: flex;
+    }
+    nav .submenu {
+      display: none;
+      flex-direction: column;
+      background-color: #00264d;
+    }
+    nav .submenu a {
+      font-size: 0.85rem;
+      padding-left: 2rem;
+    }
+    .toggle-theme {
+      margin-top: auto;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #bbb;
+      cursor: pointer;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .dark-mode nav {
+      background-color: #1e1e1e;
+    }
+    .dark-mode nav .submenu {
+      background-color: #2b2b2b;
+    }
+    .dark-mode header {
+      background-color: #1e1e1e;
+    }
+    main {
+      margin-left: 200px;
+      margin-top: 80px;
+      padding: 2rem;
+      flex: 1;
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+      animation: fade 0.3s ease-in-out;
+    }
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+    img.placeholder {
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem 0;
+      background-color: #ddd;
+      height: 200px;
+      display: block;
+    }
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" onclick="showTab('sobre')"><i class="fas fa-info-circle"></i> Sobre</a>
+    <div class="has-submenu">
+      <a href="#"><i class="fas fa-tools"></i> Serviços ▾</a>
+      <div class="submenu">
+        <a href="#" onclick="showTab('rotina')">Rotina Diária</a>
+        <a href="#" onclick="showTab('estoque')">Controle de Estoque</a>
+        <a href="#" onclick="showTab('requisicao')">Requisição de Materiais</a>
+        <a href="#" onclick="showTab('patrimonio')">Controle de Patrimônio</a>
+        <a href="#" onclick="showTab('pagamento')">Processo de Pagamento</a>
+      </div>
+    </div>
+    <a href="#" onclick="showTab('links')"><i class="fas fa-link"></i> Links Úteis</a>
+    <div class="toggle-theme" onclick="toggleTheme()">
+      <i class="fas fa-moon"></i> Modo Escuro
+    </div>
+  </nav>
+
+  <header>
+    <img src="ufrj.jpeg" alt="UFRJ Logo">
+    <h1>Guia Rápido - Almoxarifado UFRJ</h1>
+  </header>
+
+  <main>
+    <section id="sobre" class="active">
+      <h2>Sobre</h2>
+      <p>Seja bem-vindo ao setor de Almoxarifado da UFRJ. Este espaço foi desenvolvido para orientar os novos servidores sobre os processos, rotinas e responsabilidades do setor.</p>
+    </section>
+
+    <section id="rotina">
+      <h2>Rotina Diária</h2>
+      <p>Recebimento e conferência de materiais, registro no sistema, organização do estoque e atendimento às requisições.</p>
+      <img src="#" alt="Imagem ilustrativa da rotina" class="placeholder">
+    </section>
+
+    <section id="Baixa do estoque">
+      <h2>Fazendo Saida de materiais</h2>
+      <p>Para realizar a saída utilizaremos o site do sisufrj (acessar a aba links úteis).
+
+      </p>
+      <img src="#" alt="Imagem controle de estoque" class="placeholder">
+    </section>
+
+    <section id="requisicao">
+      <h2>Requisição de Materiais</h2>
+      <p>Preenchimento de formulários no sistema oficial (SIPAC), com aprovação de superiores.</p>
+      <img src="#" alt="Imagem requisição" class="placeholder">
+    </section>
+
+    <section id="patrimonio">
+      <h2>Controle de Patrimônio</h2>
+      <p>Registro e controle de bens permanentes com movimentação registrada por termo e no sistema.</p>
+      <img src="#" alt="Imagem patrimônio" class="placeholder">
+    </section>
+
+    <section id="Iniciando um processo 'filho'">
+      <h2></h2>
+      <ol>
+        <li>.</li>
+        <li>Escolher tipo de processo por palavra-chave.</li>
+        <li>Preencher como público, com especificações.</li>
+        <li>Anexar documentos na ordem correta:</li>
+        <ul>
+          <li>Nota fiscal, atesto, termos, consultas, folha de informação.</li>
+        </ul>
+        <li>Utilizar documentos modelo quando necessário.</li>
+      </ol>
+      <img src="#" alt="Imagem processo de pagamento" class="placeholder">
+    </section>
+
+    <section id="links">
+      <h2>Links Úteis</h2>
+      <ul>
+        <li><a href="https://www.ufrj.br/" target="_blank">Portal da UFRJ</a></li>
+        <li><a href="https://email.ufrj.br/rc/?_task=mail&_mbox=INBOX" target="_blank">Email</a></li>
+        <li><a href="https://sei.ufrj.br/sip/login.php?sigla_orgao_sistema=UFRJ&sigla_sistema=SEI" target="_blank">SEI</a></li> 
+        <li><a href="https://sisufrj.ufrj.br/sipac/?modo=classico" target="_blank">SISUFRJ</a></li>
+        <li><a href="https://pr6.nuvem.ufrj.br/apps/files/?dir=/DGEMM-CGLIC-SGG&fileid=1312307" target="_blank">Nuvem</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>
