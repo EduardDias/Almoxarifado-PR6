@@ -143,29 +143,27 @@
         <div class="has-subsubmenu">
           <a onclick="toggleSubmenu('rotina')">Rotina Diária ▸</a>
           <div id="rotina" class="subsubmenu">
-            <a onclick="showTab('rotina1')">Checklist Diário</a>
-            <a onclick="showTab('rotina2')">Recebimento de Material</a>
+            <a onclick="showTab('Tarefas_Diarias')">Checklist Diário</a>
+            <a onclick="showTab('Recebimento_Material')">Recebimento de Material</a>
           </div>
         </div>
         <div class="has-subsubmenu">
           <a onclick="toggleSubmenu('estoque')">Controle de Estoque ▸</a>
           <div id="estoque" class="subsubmenu">
-            <a onclick="showTab('estoque1')">Entrada de Materiais</a>
-            <a onclick="showTab('estoque2')">Saída de Materiais</a>
+            <a onclick="showTab('Entrada_Materiais')">Entrada de Materiais</a>
+            <a onclick="showTab('Saida')">Saída de Materiais</a>
           </div>
         </div>
         <div class="has-subsubmenu">
           <a onclick="toggleSubmenu('requisicao')">Processos ▸</a>
           <div id="requisicao" class="subsubmenu">
-            <a onclick="showTab('requisicao1')">Abertura de processos</a>
-            <a onclick="showTab('requisicao2')">Atestado_de_capacidade_Tecnica</a>
-            <a onclick="showTab('requisicao3')">Processo Filho </a>
-            <a onclick="showTab('requisicao4')">Processo de Pagamento</a>
-            <a onclick="showTab('requisicao5')">Processo de </a>
-            <a onclick="showTab('requisicao6')">Processo de</a>
-            <a onclick="showTab('requisicao7')">Processo de</a>
-            <a onclick="showTab('requisicao8')">Processo de</a>
-            <a onclick="showTab('requisicao9')">Processo de</a>
+            <a onclick="showTab('Abertura de pagamento')">Abertura de processos</a>
+            <a onclick="showTab('Atestado_Capacidade_tecnica')">Atestado de Capacidade Técnica</a>
+            <a onclick="showTab('Processo_Filho')">Processo Filho </a>
+            <a onclick="showTab('Processo_Pagamento')">Processo de Pagamento</a>
+            <a onclick="showTab('Processo_Tombamento')">Processo de Tombamento </a>
+            <a onclick="showTab('Processo_Licitacao')">Processo de Licitação</a>
+            <a onclick="showTab('Processo_Reparo_Manutencao')">Processo de Reparo e Manutenção</a>
           </div>
         </div>
         <div class="has-subsubmenu">
@@ -201,7 +199,7 @@
       <p>Seja bem-vindo ao setor de Almoxarifado da UFRJ. Este espaço foi desenvolvido para orientar os novos servidores sobre os processos, rotinas e responsabilidades do setor.</p>
     </section>
     <!-- Subtópicos -->
-    <section id="rotina1"><h2>Checklist Diário</h2>
+    <section id="Tarefas_Diarias"><h2>Checklist Diário</h2>
 <br>
     <p>
       Procedimentos para início e fim do expediente, verificação de materiais e conferência básica.
@@ -217,13 +215,21 @@
     
     </section>
 
-    <section id="rotina3"><h2>Controle de Acessos</h2><p>Identificação dos responsáveis pelo almoxarifado e controle de entrada/saída do setor.</p></section>
-    <section id="estoque1"><h2>Entrada de Materiais</h2>
+    <section id="Recebimento_Material">
+      <h2>Recebimento de materiais:</h2>
+      <p>
+        Após o término da licitação o processo é encaminhado a DGEMM, que solicitará à PR3 indicação de recurso e emissão de empenho. Emitido o empenho, uma cópia será encaminhada para a empresa tomar ciência e entregar o material no almoxarifado.
+Almoxarifado recebe o material, confere e inclui a nota fiscal com os dados necessários no SisUfrj. A partir desse momento, o material de consumo/expediente poderá ser entregue as unidades solicitantes da Administração Central.
+</p>
+    </section>
+
+    <section id="Entrada_Materiais">
+      <h2>Entrada de Materiais:</h2>
     <p>Registro no sistema de uma nova NOTA FISCAL</p>
     <br>
     <ul>
       <li><H2>Cadastrando a Nota Fiscal</H2>
-        <img src="Imagens/Cadastrar_nota_fiscal/Primeiro_passo.jpeg" alt="">
+        <img src="Imagens/Cadastrar_nota_fiscal/Primeiro_passo.jpeg" alt="Cadastrar_nota_fiscal">
       </li>
       <br>
       <li>
@@ -259,7 +265,7 @@
     </ul>  
   </section>
     
-    <section id="estoque2">
+    <section id="Saida">
       
       <h2>Saída e Baixa</h2>
 
@@ -324,75 +330,82 @@
 
     <br>
     </section>
-    <section id="requisicao1"><h1>Como Iniciar um Processo:</h1>
+
+    <section id="Abertura de pagamento">
+      <h1>Como Iniciar um Processo:</h1>
       <h4>Esse topico serve para QUALQUER processo.</h4>
       <br>
+
       <ul>
         <li>
           <h2>Essa é a tela inicial, clique em iniciar o processo:</h3>
           <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso">
-          </li>
+        </li>
           <br>
+
           <li>
           <h2>Selecione o tipo de processo:</h3>
-          <img src="Imagens/Abrir_processo/Escolhendo_o_tipo_de_processo.jpeg" alt="EscolhaProcesso">
+          <img src="Imagens/Abrir_processo/Escolhendo_tipo_de_processo.jpeg" alt="EscolhaProcesso">
           </li>
           <br>
+
           <li>
           <h2>Essa será a a sua tela seguinte, Não alterar o "Automático" e SEMPRE será "Público":</h3>
           <img src="Imagens/Abrir_processo/publico_salvar.jpeg" alt="encerramento">
           </li>
           <br>
-          <h4>Pronto! você abriu o seu processo!</h4>
-         </ul>
-         
 
-    
-    </section>
-    <section id="requisicao2">
+          <h4>Pronto! você abriu o seu processo!</h4>
+
+         </ul>
+      </section>
+
+    <section id="Atestado_Capacidade_tecnica">
       
       <h2>Atestado_de_capacidade_Tecnica</h2> <br> <p>Introdução do que se trata</p>
       <ul>
         <li> <h2>Inicie um novo processo:</h2>
+
       <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso">
-      </li>
+
+        </li>
+
       <br>
         
       <li>
-      <h2>Selecione o tipo de processo, abaixo contém um processo para seguir como base:</h3>
-        <p>Lembre-se de ALTERAR as informações</p>
-          <img src="Imagens/Atestado_de_capacidade_Tecnica/processo_exemplo.jpeg" alt="processo_exemplo">
-          <br>
-        </li>
+      <h2>Selecione o tipo de processo, abaixo contém um processo para seguir como base:</h2>
 
-        <li>
+       <p>Lembre-se de ALTERAR as informações</p>
+
+          <img src="Imagens/Atestado_de_capacidade_Tecnica/processo_exemplo.jpeg" alt="processo_exemplo">
+      </li>
+      <br>
+
+      <li>
           <h2>Adicionar documentos:</h2>
           <p>Lembre-se todo PDF ou documento que você baixou entra como documento EXTERNO!</p>
           <br>
           <h3>Essa é a ordem que os documentos devem estar, se houver ATA de registro de preço substituir o relátorio de dispensa!</h3>
           <img src="Imagens/Atestado_de_capacidade_Tecnica/Ordem_dos_documentos.jpeg"alt ="ordem dos documentos">
-        </li>
+      </li>
       </ul>
-     
     </section>
-    <section id="requisicao3"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
-    <section id="requisicao4"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
-    <section id="requisicao5"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
-    <section id="requisicao6"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
-    <section id="requisicao7"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
-    <section id="requisicao8"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
-    <section id="requisicao9"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
+
+    <section id="Processo_Filho"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
+    <section id="Processo_Pagamento"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
+    <section id="Processo_Tombamento"><h2>Aprovação</h2><p>Fluxo de aprovação de requisicao pelo responsável da unidade.</p></section>
     <section id="patrimonio1"><h2>Registro de Bens</h2><p>Criação de tombamento e vinculação de patrimônio à unidade.</p></section>
     <section id="patrimonio2"><h2>Movimentação</h2><p>Transferência e baixa de bens permanentes.</p></section>
-    <section id="pagamento1"><h2>Abertura</h2><p>Iniciar processo filho no sistema, definindo tipo e acesso público.</p></section>
+    <section id="pagamento1"><h2>Abertura</h2><p>Iniciar Processo_Filho no sistema, definindo tipo e acesso público.</p></section>
     <section id="pagamento2"><h2>Documentação</h2><p>Ordem dos anexos obrigatórios no processo e uso de modelos.</p></section>
     <section id="links">
       <h2>Links Úteis</h2>
       <ul>
         <li><a href="https://www.ufrj.br/" target="_blank">Portal da UFRJ</a></li>
-        <li><a href="https://sipac.ufrj.br/" target="_blank">SIPAC</a></li>
-        <li><a href="https://www.sigepe.gov.br/" target="_blank">SIGEPE</a></li>
-        <li><a href="https://suap.ufrj.br/" target="_blank">SUAP</a></li>
+        <li><a href="https://email.ufrj.br/rc/?_task=mail&_mbox=INBOX" target="_blank">E-mail</a></li>
+        <li><a href="https://sei.ufrj.br/sip/login.php?sigla_orgao_sistema=UFRJ&sigla_sistema=SEI" target="_blank">Sei</a></li>
+        <li><a href="https://sisufrj.ufrj.br/sipac/?modo=classico" target="_blank">SisUFRJ</a></li>
+        <li><a href="https://pr6.nuvem.ufrj.br/apps/files/?dir=/DGEMM-CGLIC-SGG&fileid=1312307" target="_blank">Nuvem</a></li>
       </ul>
     </section>
   </main>
