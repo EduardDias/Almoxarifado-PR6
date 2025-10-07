@@ -180,41 +180,49 @@
         </div>
 
         <div class="has-subsubmenu">
-          <a onclick="toggleSubmenu('estoque')">Controle de Estoque ▸</a>
+          <a onclick="toggleSubmenu('estoque')">Controle de Estoque ▸</a>,
+
           <div id="estoque" class="subsubmenu">
             <a onclick="showTab('Entrada_Materiais')">Entrada de Materiais</a>
             <a onclick="showTab('Saida')">Saída de Materiais</a>
             <a onclick="showTab('Inventario')">Gerar planilha</a>
           </div>
+
         </div>
 
         <div class="has-subsubmenu">
           <a onclick="toggleSubmenu('requisicao')">Processos ▸</a>
+
           <div id="requisicao" class="subsubmenu">
-            <a onclick="showTab('Abertura de pagamento')">Abertura de processos</a>
-            <a onclick="showTab('Atestado_Capacidade_tecnica')">Atestado de Capacidade Técnica</a>
-            <a onclick="showTab('Processo_Filho')">Processo Filho </a>
-            <a onclick="showTab('Processo_Pagamento')">Processo de Pagamento</a>
-            <a onclick="showTab('Processo_Tombamento')">Processo de Tombamento </a>
+            <a onclick="showTab('Iniciar_Processo')">Iniciar Processo</a>
             <a onclick="showTab('Processo_Licitacao')">Processo de Licitação</a>
+            <a onclick="showTab('Processo_Pagamento')">Processo de Pagamento</a>
+            <a onclick="showTab('Processo_Tombamento')">Processo de Tombamento</a>
+            <a onclick="showTab('Processo_Filho')">Processo Filho</a>
             <a onclick="showTab('Processo_Reparo_Manutencao')">Processo de Reparo e Manutenção</a>
+            <a onclick="showTab('Atestado_Capacidade_tecnica')">Atestado de Capacidade Técnica</a>
           </div>
+
         </div>
 
         <div class="has-subsubmenu">
           <a onclick="toggleSubmenu('patrimonio')">Controle de Patrimônio ▸</a>
+
           <div id="patrimonio" class="subsubmenu">
             <a onclick="showTab('patrimonio1')">Registro de Bens</a>
             <a onclick="showTab('patrimonio2')">Movimentação</a>
           </div>
+
         </div>
 
         <div class="has-subsubmenu">
           <a onclick="toggleSubmenu('pagamento')">A definir ▸</a>
+
           <div id="pagamento" class="subsubmenu">
             <a onclick="showTab('pagamento1')">Abertura</a>
             <a onclick="showTab('pagamento2')">Documentação</a>
           </div>
+
         </div>
 
       </div>
@@ -241,10 +249,16 @@
       <h2>Checklist Diário</h2>
 
       <ul>
-        <li> fazer o café (O primeiro a chegar)</li>
-        <li> Verificar os Emails </li>
-        <li> Atualizar as Planilhas </li>
-        <li> Organizar documentos </li>
+        <li>
+          Verificar os Emails - <a href="https://email.ufrj.br/rc/?_task=mail&_mbox=INBOX" target="_blank">E-mail</a>
+        </li>
+
+        <br>
+
+        <li>
+          Atualizar as Planilhas - <a href="https://drive.google.com/drive/folders/1KpVIeuMPTpZwL4d4lKICxONLogiuhhIL"
+            target="_blank">Drive Almoxarifado</a>
+        </li>
       </ul>
     </section>
 
@@ -403,32 +417,36 @@
           <h2>Primeiro vamos selecionar a aba "Relatório" e depois selecionar "Inventário" como descreve a imagem
             abaixo:</h2>
         </li>
+        <br>
         <img src="Imagens/Relatorio_estoque/Inicio.jpeg" alt="Inicio">
+        <br>
         <li>
           <h2>Para gerar o relatório selecione "Excel" se quiser o relátorio de um gurpo especifico selecione como está
             descrito na imagem,
             mas se deseja o relatório completo de todos os itens não precisa selecionar nada.</h2>
         </li>
-
+        <br>
         <img src="Imagens/Relatorio_estoque/gerando_relatorio.jpeg" alt="gerando_relatorio">
         <br>
         <li>
           <h2>Exemplo de como deve ficar a imagem no caso do relatório completo, se for de um grupo especifico o nome
             aparecerá no lugar do "Selecione"</h2>
         </li>
+        <br>
         <img src="Imagens/Relatorio_estoque/relatorio_completo.jpeg" alt="relatorio_completo">
         <br>
         <li>
           <h2>Após gerar o relátorio essa é a sua tela, você pode imprimir para os almoxarifes ou apenas salvar para
             conferência pessoal</h2>
         </li>
+        <br>
         <img src="Imagens/Relatorio_estoque/resultado_final.png" alt="resultado_final">
         <br>
       </ul>
     </section>
 
 
-    <section id="Abertura de pagamento">
+    <section id="Iniciar_Processo">
       <h1>Como Iniciar um Processo:</h1>
 
       <h4>Esse topico serve para QUALQUER processo.</h4>
@@ -541,20 +559,31 @@
       <ul>
         <li>
           <h3>Essa é a tela inicial, clique em iniciar o processo:</h3>
-          <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso">
         </li>
+
+        <br>
+        <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso">
         <br>
 
         <li>
           <h3>Selecione o tipo de processo:</h3>
-          <img src="Imagens/Abrir_processo/Escolhendo_tipo_de_processo.jpeg" alt="EscolhaProcesso">
-        </li>
+       </li>
+        
+        <br>
+        <img src="Imagens/Abrir_processo/Escolhendo_tipo_de_processo.jpeg" alt="EscolhaProcesso">
         <br>
 
         <li>
           <h3>Essa será a a sua tela seguinte, Não alterar o "Automático"! Processos de Licitação não são
             publicos, eles precisam ser "Sigiloso ou Restrito":</h3>
-          <img src="Imagens/Abrir_processo/publico_salvar.jpeg" alt="encerramento">
+        </li>
+
+        <br>
+        <img src="Imagens/Processo_licitacao/escolha_do_processo.jpeg" alt="encerramento">
+        <br>
+
+        <li>
+          <H2>Continua...</H2>
         </li>
     </section>
 
@@ -593,13 +622,9 @@
         <li><a href="https://sisufrj.ufrj.br/sipac/?modo=classico" target="_blank">SisUFRJ</a></li>
         <li><a href="https://pr6.nuvem.ufrj.br/apps/files/?dir=/DGEMM-CGLIC-SGG&fileid=1312307"
             target="_blank">Nuvem</a></li>
-        <li><a href="https://email.ufrj.br/rc/?_task=mail&_mbox=INBOX" target="_blank">E-mail</a></li>
-        <li><a href="https://sei.ufrj.br/sip/login.php?sigla_orgao_sistema=UFRJ&sigla_sistema=SEI"
-            target="_blank">Sei</a></li>
-        <li><a href="https://sisufrj.ufrj.br/sipac/?modo=classico" target="_blank">SisUFRJ</a></li>
-        <li><a href="https://pr6.nuvem.ufrj.br/apps/files/?dir=/DGEMM-CGLIC-SGG&fileid=1312307"
-            target="_blank">Nuvem</a></li>
-      </ul>
+        <li><a href="https://drive.google.com/drive/folders/1KpVIeuMPTpZwL4d4lKICxONLogiuhhIL"
+            target="_blank">Drive (Novo)</a></li>    
+       </ul>
     </section>
 
   </main>
