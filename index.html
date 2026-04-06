@@ -1,374 +1,109 @@
-<!-- Blog com submenus expansíveis via clique, estilo profissional e compacto -->
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Almoxarifado UFRJ - Guia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            display: flex;
-            min-height: 100vh;
-            background-color: #e9edf2;
-            color: #2c3e50;
-        }
-
-        header {
-            background-color: #001c3d;
-            color: white;
-            padding: 0.7rem 1rem;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 250px;
-            right: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 0.75rem;
-            border-bottom: 2px solid #00509e;
-        }
-
-        header img {
-            height: 34px;
-            border-radius: 3px;
-        }
-
-        header h1 {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        nav {
-            width: 250px;
-            background-color: #001c3d;
-            padding-top: 4.3rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            border-right: 2px solid #003b73;
-        }
-
-        nav a {
-            color: #ecf0f1;
-            text-decoration: none;
-            padding: 0.6rem 0.9rem;
-            display: block;
-            font-size: 0.9rem;
-            transition: background 0.2s, padding-left 0.2s, color 0.2s;
-            cursor: pointer;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-
-        nav a i {
-            margin-right: 0.4rem;
-            width: 16px;
-            text-align: center;
-        }
-
-        nav a:hover {
-            background-color: #003366;
-            padding-left: 1.2rem;
-        }
-
-        nav .submenu,
-        nav .subsubmenu {
-            display: none;
-            flex-direction: column;
-        }
-
-        nav .submenu a,
-        nav .subsubmenu a {
-            font-size: 0.85rem;
-            padding-left: 1.6rem;
-            background-color: #00264d;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        nav .subsubmenu a {
-            padding-left: 2rem;
-            background-color: #003366;
-        }
-
-        nav .submenu a:hover,
-        nav .subsubmenu a:hover {
-            background-color: #004080;
-        }
-
-        .toggle-theme {
-            margin-top: auto;
-            padding: 0.8rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #bbb;
-            cursor: pointer;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        main {
-            margin-left: 250px;
-            margin-top: 70px;
-            padding: 1.5rem 1.7rem;
-            flex: 1;
-            min-height: calc(100vh - 70px);
-        }
-
-        .breadcrumb {
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            margin-bottom: 0.75rem;
-        }
-
-        .breadcrumb span {
-            color: #00509e;
-            font-weight: 700;
-        }
-
-        section {
-            display: none;
-            background-color: #ffffff;
-            border-radius: 6px;
-            padding: 1rem 1.2rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        section.active {
-            display: block;
-            animation: fade 0.2s ease-in-out;
-        }
-
-        h1,
-        h2 {
-            margin-bottom: 0.6rem;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-        }
-
-        h3,
-        h4,
-        h5 {
-            margin: 0.4rem 0;
-        }
-
-        p,
-        li {
-            font-size: 0.95rem;
-            line-height: 1.4rem;
-        }
-
-        ul {
-            margin-left: 1.2rem;
-            margin-top: 0.4rem;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 0.3rem 0;
-            border-radius: 4px;
-            border: 1px solid #d0d3d4;
-        }
-
-        a {
-            color: #00509e;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        @keyframes fade {
-            from {
-                opacity: 0;
-                transform: translateY(4px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Modo escuro: só na área de conteúdo */
-        .dark-mode main {
-            background-color: #111827;
-        }
-
-        .dark-mode main section {
-            background-color: #1f2937;
-            color: #e5e7eb;
-            box-shadow: none;
-            border: 1px solid #374151;
-        }
-
-        .dark-mode main a {
-            color: #60a5fa;
-        }
-
-        .dark-mode img {
-            border-color: #4b5563;
-        }
-
-        /* Popup de aniversariantes */
-        .birthday-popup {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #001c3d, #004080);
-            color: #fff;
-            padding: 10px 16px;
-            border-radius: 10px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-            font-size: 0.9rem;
-            z-index: 2000;
-            display: none;
-            min-width: 220px;
-        }
-
-        .birthday-popup strong {
-            display: block;
-            font-size: 0.95rem;
-            margin-bottom: 3px;
-        }
-
-        .birthday-popup span {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                width: 210px;
-            }
-
-            header {
-                left: 210px;
-            }
-
-            main {
-                margin-left: 210px;
-                padding: 1rem;
-            }
-
-            .birthday-popup {
-                right: 10px;
-                left: 10px;
-            }
-        }
-    </style>
+    <title>Guia Operacional - Almoxarifado</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <nav>
-        <a onclick="showTab('sobre')"><i class="fas fa-info-circle"></i> Sobre</a>
 
-        
+    <nav id="sidebar">
 
-        
+        <h2>Almoxarifado</h2>
 
-        <div class="has-submenu">
-            <a onclick="toggleSubmenu('servicos')"><i class="fas fa-tools"></i> Serviços ▾</a>
-            <div id="servicos" class="submenu">
+        <a onclick="showSection('sobre')">
+            <i class="fas fa-home"></i>
+            <span>Sobre</span>
+        </a>
 
-                <div class="has-subsubmenu">
-                    <a onclick="toggleSubmenu('rotina')">Rotina Diária ▸</a>
-                    <div id="rotina" class="subsubmenu">
-                        <a onclick="showTab('Tarefas_Diarias')">Checklist Diário</a>
-                        <a onclick="showTab('Recebimento_Material')">Recebimento de Material</a>
-                    </div>
-                </div>
+        <a onclick="showSection('noticias')">
+            <i class="fas fa-newspaper"></i>
+            <span>Notícias</span>
+        </a>
 
-                <div class="has-subsubmenu">
-                    <a onclick="toggleSubmenu('estoque')">Controle de Estoque ▸</a>
-                    <div id="estoque" class="subsubmenu">
-                        <a onclick="showTab('Entrada_Materiais')">Entrada de Materiais</a>
-                        <a onclick="showTab('Saida')">Saída de Materiais</a>
-                        <a onclick="showTab('Inventario')">Gerar Inventário</a>
-                    </div>
-                </div>
+        <!-- BOTÃO PROCESSOS -->
+        <a onclick="toggleSubmenu('submenuSEI')">
+            <i class="fas fa-folder"></i>
+            <span>SEI</span>
+        </a>
 
-                <div class="has-subsubmenu">
-                    <a onclick="toggleSubmenu('Processos')"> Processos ▸</a>
-                    <div id="Processos" class="subsubmenu">
-                        <a onclick="showTab('Iniciar_Processo')">Iniciar Processo</a>
-                        <a onclick="showTab('Processo_Licitacao')">Processo de Licitação</a>
-                        <a onclick="showTab('Processo_Pagamento')">Processo de Pagamento</a>
-                        <a onclick="showTab('Processo_Tombamento')">Processo de Tombamento</a>
-                        <a onclick="showTab('Processo_Filho')">Processo Filho</a>
-                        <a onclick="showTab('Processo_Reparo_Manutencao')">Processo de Reparo e Manutenção</a>
-                        <a onclick="showTab('Atestado_Capacidade_tecnica')">Atestado de Capacidade Técnica</a>
-                    </div>
-                </div>
-
-                <div class="has-subsubmenu">
-                    <a onclick="toggleSubmenu('patrimonio')">Controle de Patrimônio ▸</a>
-                    <div id="patrimonio" class="subsubmenu">
-                        <a onclick="showTab('patrimonio1')">Registro de Bens</a>
-                        <a onclick="showTab('patrimonio2')">Movimentação</a>
-                    </div>
-                </div>
-
-                <div class="has-subsubmenu">
-                    <a onclick="toggleSubmenu('pagamento')">A definir ▸</a>
-                    <div id="pagamento" class="subsubmenu">
-                        <a onclick="showTab('pagamento1')">Abertura</a>
-                        <a onclick="showTab('pagamento2')">Documentação</a>
-                    </div>
-                </div>
-            </div>
+        <!-- SUBMENU -->
+        <div id="submenuSEI" class="submenu">
+            <a onclick="showSection('Iniciar_Processo')">Iniciar Processo</a>
+            <a onclick="showSection('Atestado_Capacidade_tecnica')">Atestado</a>
+            <a onclick="showSection('Processo_Licitacao')">Licitação</a>
+            <a onclick="showSection('Processo_Filho')">Processo Filho</a>
+            <a onclick="showSection('Processo_Pagamento')">Processo Pagamento</a>
+            <a onclick="showSection('Processo_Tombamento')">Processo Tombamento</a>
+            <a onclick="showSection('Processo_Reparo_Manutencao')">Reparo / Manutenção</a>
+            <a onclick="showSection('pagamento1')">Pagamento - Abertura</a>
+            <a onclick="showSection('pagamento2')">Pagamento - Documentação</a>
         </div>
 
-        <a onclick="showTab('links')"><i class="fas fa-link"></i> Links Úteis</a>
+        <a onclick="toggleSubmenu('submenuSisUFRJ')">
+            <i class="fas fa-folder"></i>
+            <span>SisUFRJ</span>
+        </a>
 
-          <!-- Novo item direto para aniversariantes -->
-        <a onclick="mostrarAniversariantesDoMes()"><i class="fas fa-cake-candles"></i> Aniversariantes</a>
+        <div id="submenuSisUFRJ" class="submenu">
+            <a onclick="showSection('Inventario')">Relatório</a>
+            <a onclick="showSection('Entrada_Materiais')">Entrada de Materiais</a>
+            <a onclick="showSection('Saida')">Saída de Materiais</a>
+        </div>
 
-        <a onclick="showTab('noticias')"><i class="fas fa-newspaper"></i> Notícias / Novidades</a>
-        
-        <div class="toggle-theme" onclick="toggleTheme()">
-            <i class="fas fa-moon"></i> Modo Escuro
+        <a onclick="toggleSubmenu('submenuInformativo')">
+            <i class="fas fa-home"></i>
+            <span>Informativo</span>
+        </a>
+
+        <div id="submenuInformativo" class="submenu">
+            <a onclick="showSection('Home_Office')">Escala Home Office</a>
+            <a onclick="showSection('Férias')">Férias</a>
+            <a onclick="showSection('Aniversariantes')">Aniversariantes</a>
         </div>
     </nav>
 
     <header>
-        <img src="Imagens/ufrj.jpeg" alt="ufrjLogo">
-        <h1>Guia Rápido - Almoxarifado UFRJ</h1>
+        <button onclick="toggleSidebar()" class="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1>Guia Operacional - UFRJ</h1>
     </header>
 
     <main>
-        <div class="breadcrumb">
-            Você está em: <span>Sobre</span>
-        </div>
 
-        <!-- SOBRE (sem lista de aniversariantes agora) -->
         <section id="sobre" class="active">
             <h2>Sobre</h2>
+
             <p>Seja bem-vindo ao setor de Almoxarifado da UFRJ. Este espaço foi desenvolvido para orientar os novos
                 servidores
                 sobre os processos, rotinas e responsabilidades do setor.</p>
             <br>
-            <p>Utilize o menu ao lado para acessar rotinas, processos, links úteis e novidades.</p>
+            <div class="painel-info">
+
+                <div class="card-info">
+                    <h3>📅 Escala Home Office</h3>
+                    <div id="homeOfficeResumo"></div>
+                </div>
+
+                <div class="card-info">
+                    <h3>🏖️ Férias do Mês</h3>
+                    <div id="feriasResumo"></div>
+                </div>
+
+                <div class="card-info">
+                    <h3>🎂 Aniversariantes</h3>
+                    <div id="aniversariosResumo"></div>
+                </div>
+
+            </div>
+
+
         </section>
 
         <!-- NOTÍCIAS / NOVIDADES -->
@@ -421,35 +156,37 @@
             <ul>
                 <li>
                     <h2>Cadastrando a Nota Fiscal</h2>
-                    <img src="Imagens/Cadastrar_nota_fiscal/Primeiro_passo.jpeg" alt="TelaInicial">
+                    <img src="Imagens/Cadastrar_nota_fiscal/Primeiro_passo.jpeg" alt="TelaInicial" class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Selecione o tipo:</h2>
                     <p>Observação: Sempre será Extra-Orçamentária!</p>
-                    <img src="Imagens/Cadastrar_nota_fiscal/SegundoPasso.jpeg" alt="TelaSeguinte">
+                    <img src="Imagens/Cadastrar_nota_fiscal/SegundoPasso.jpeg" alt="TelaSeguinte" class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Com o auxilio da nota fiscal preencha as informações abaixo corretamente:</h2>
-                    <img src="Imagens/Cadastrar_nota_fiscal/Tela_cadastro.jpeg" alt="TelaCadastro">
+                    <img src="Imagens/Cadastrar_nota_fiscal/Tela_cadastro.jpeg" alt="TelaCadastro" class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Suas informações devem ficar mais ou menos assim:</h2>
-                    <img src="Imagens/Cadastrar_nota_fiscal/exemplo.jpeg" alt="exemplo">
+                    <img src="Imagens/Cadastrar_nota_fiscal/exemplo.jpeg" alt="exemplo" class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Preencha a tela seguinte com as informações da NOTA FISCAL:</h2>
                     <h5>Obs: DATA DE VALIDADE E DATA DE GARANTIA NÃO precisam ser preenchidas!</h5>
-                    <img src="Imagens/Cadastrar_nota_fiscal/incluir_valorequantidade.png" alt="TelaValor">
+                    <img src="Imagens/Cadastrar_nota_fiscal/incluir_valorequantidade.png" alt="TelaValor"
+                        class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Após preencher VERIFIQUE as informações e caso necessite CORRIJA:</h2>
                     <h5>Estando tudo certo, pode continuar!</h5>
-                    <img src="Imagens/Cadastrar_nota_fiscal/tela_posinformacoesnota.jpeg" alt="tela_PosInformacoesNota">
+                    <img src="Imagens/Cadastrar_nota_fiscal/tela_posinformacoesnota.jpeg" alt="tela_PosInformacoesNota"
+                        class="imagem-click">
                 </li>
                 <li>
                     <h4>Agora é só confirmar e imprimir!</h4>
@@ -468,31 +205,31 @@
                     <h2>Essa é sua tela inicial após realizar o login:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/Teladelogin.jpg" alt="Teladelogin">
+                <img src="Imagens/Saida_de_materiais/Teladelogin.jpg" alt="Teladelogin" class="imagem-click">
                 <br>
                 <li>
                     <h2>Após realizar login, essa será a tela inicial:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/Menu_inicial.jpeg" alt="Menu Inicial">
+                <img src="Imagens/Saida_de_materiais/Menu_inicial.jpeg" alt="Menu Inicial" class="imagem-click">
                 <br>
                 <li>
                     <h2>Selecione a parte de estoque e depois 'Registrar Saida':</h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/Menu_Estoque.jpeg" alt="Menu estoque">
+                <img src="Imagens/Saida_de_materiais/Menu_Estoque.jpeg" alt="Menu estoque" class="imagem-click">
                 <br>
                 <li>
                     <h2>Aqui você seleciona os materiais:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/Registro_de_saida.jpeg" alt="Registrodesaida">
+                <img src="Imagens/Saida_de_materiais/Registro_de_saida.jpeg" alt="Registrodesaida" class="imagem-click">
                 <br>
                 <li>
                     <h2>Digite o item que será dado a baixa e clique em adicionar. Segue exemplo abaixo:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/Exemplodebaixa.jpeg" alt="Exemplodebaixa">
+                <img src="Imagens/Saida_de_materiais/Exemplodebaixa.jpeg" alt="Exemplodebaixa" class="imagem-click">
                 <br>
                 <li>
                     <h2>Após adicionar iremos dizer o tipo de saida:</h2>
@@ -500,25 +237,27 @@
                 <br>
                 <h3>Na maioria dos casos o "Tipo de Saída" será "Saída"</h3>
                 <br>
-                <img src="Imagens/Saida_de_materiais/Registro_de_saida1.jpeg" alt="Registrodesaida1">
+                <img src="Imagens/Saida_de_materiais/Registro_de_saida1.jpeg" alt="Registrodesaida1"
+                    class="imagem-click">
                 <br>
                 <li>
                     <h2>Selecionando o Destino:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/Selecionando_Destino.jpeg" alt="SelecionandoDestino">
+                <img src="Imagens/Saida_de_materiais/Selecionando_Destino.jpeg" alt="SelecionandoDestino"
+                    class="imagem-click">
                 <br>
                 <li>
                     <h2>Agora é só finalizar! </h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/FinalizandoBaixa.jpeg" alt="FinalizandoBaixa">
+                <img src="Imagens/Saida_de_materiais/FinalizandoBaixa.jpeg" alt="FinalizandoBaixa" class="imagem-click">
                 <br>
                 <li>
                     <h2>Depois de realizar a baixa, essa é a sua tela final:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Saida_de_materiais/fimSaida.jpeg" alt="fimSaida">
+                <img src="Imagens/Saida_de_materiais/fimSaida.jpeg" alt="fimSaida" class="imagem-click">
                 <br>
                 <h3> Agora é só imprimir DUAS cópias do arquivo e carimbar para assintaura!</h3>
             </ul>
@@ -533,25 +272,27 @@
                     <h2>Primeiro vamos selecionar a aba "Relatório" e depois "Inventário":</h2>
                 </li>
                 <br>
-                <img src="Imagens/Relatorio_estoque/Inicio.jpeg" alt="Inicio">
+                <img src="Imagens/Relatorio_estoque/Inicio.jpeg" alt="Inicio" class="imagem-click">
                 <br>
                 <li>
                     <h2>Para gerar o relatório selecione 'Excel'... </h2>
                 </li>
                 <br>
-                <img src="Imagens/Relatorio_estoque/gerando_relatorio.jpeg" alt="gerando_relatorio">
+                <img src="Imagens/Relatorio_estoque/gerando_relatorio.jpeg" alt="gerando_relatorio"
+                    class="imagem-click">
                 <br>
                 <li>
                     <h2>Exemplo de como deve ficar a imagem:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Relatorio_estoque/relatorio_completo.jpeg" alt="relatorio_completo">
+                <img src="Imagens/Relatorio_estoque/relatorio_completo.jpeg" alt="relatorio_completo"
+                    class="imagem-click">
                 <br>
                 <li>
                     <h2>Após gerar o relatório essa é a sua tela:</h2>
                 </li>
                 <br>
-                <img src="Imagens/Relatorio_estoque/resultado_final.png" alt="resultado_final">
+                <img src="Imagens/Relatorio_estoque/resultado_final.png" alt="resultado_final" class="imagem-click">
                 <br>
             </ul>
         </section>
@@ -564,17 +305,19 @@
             <ul>
                 <li>
                     <h2>Essa é a tela inicial, clique em iniciar o processo:</h2>
-                    <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso">
+                    <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso"
+                        class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Selecione o tipo de processo:</h2>
-                    <img src="Imagens/Abrir_processo/Escolhendo_tipo_de_processo.jpeg" alt="EscolhaProcesso">
+                    <img src="Imagens/Abrir_processo/Escolhendo_tipo_de_processo.jpeg" alt="EscolhaProcesso"
+                        class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Essa será a sua tela seguinte, não alterar o 'Automático' e SEMPRE será 'Público':</h2>
-                    <img src="Imagens/Abrir_processo/publico_salvar.jpeg" alt="encerramento">
+                    <img src="Imagens/Abrir_processo/publico_salvar.jpeg" alt="encerramento" class="imagem-click">
                 </li>
                 <br>
                 <h4>Pronto! você abriu o seu processo!</h4>
@@ -588,13 +331,15 @@
             <ul>
                 <li>
                     <h2>Inicie um novo processo:</h2>
-                    <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso">
+                    <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso"
+                        class="imagem-click">
                 </li>
                 <br>
                 <li>
                     <h2>Selecione o tipo de processo, abaixo contém um processo para seguir como base:</h2>
                     <p>Lembre-se de ALTERAR as informações</p>
-                    <img src="Imagens/Atestado_de_capacidade_Tecnica/processo_exemplo.jpeg" alt="processo_exemplo">
+                    <img src="Imagens/Atestado_de_capacidade_Tecnica/processo_exemplo.jpeg" alt="processo_exemplo"
+                        class="imagem-click">
                 </li>
                 <br>
                 <li>
@@ -604,7 +349,7 @@
                     <h3>Essa é a ordem que os documentos devem estar, se houver ATA de registro de preço substituir o
                         relatório de dispensa!</h3>
                     <img src="Imagens/Atestado_de_capacidade_Tecnica/Ordem_dos_documentos.jpeg"
-                        alt="ordem dos documentos">
+                        alt="ordem dos documentos" class="imagem-click">
                 </li>
             </ul>
         </section>
@@ -617,8 +362,208 @@
 
         <!-- PROCESSO PAGAMENTO -->
         <section id="Processo_Pagamento">
-            <h2>Processo de Pagamento</h2>
-            <p>Fluxo de pagamento da unidade.</p>
+            <h2>Processo de Pagamento
+
+            </h2>
+
+            <h4>
+
+                O processo de pagamento no Sistema Eletrônico de Informações (SEI) é formalizado integralmente em meio
+                eletrônico, garantindo rastreabilidade, transparência, segurança jurídica e conformidade com as normas
+                da Administração Pública Federal.
+
+                A correta instrução do processo é fundamental para:
+
+                Permitir a liquidação regular da despesa;
+
+                Comprovar a execução do objeto contratado;
+
+                Assegurar a regularidade fiscal do fornecedor;
+
+                Evitar apontamentos de auditoria ou glosas.
+
+                Abaixo está o fluxo padrão para montagem do processo no SEI.
+            </h4>
+            <br>
+            <ul>
+                <li>
+                    <h6>1. Nota Fiscal
+
+                        A empresa encaminha a Nota Fiscal após a execução do serviço ou entrega do material.
+
+                        No SEI:
+
+                        Inserir como Documento Externo;
+
+                        Conferir CNPJ, razão social e número do empenho;
+
+                        Verificar compatibilidade do objeto e valores;
+
+                        Confirmar dados bancários.</h6>
+
+                </li>
+                <li>
+                    <h6>
+                        2. Folha de Atesto
+
+                        Documento emitido pelo fiscal do contrato declarando que o objeto foi executado conforme
+                        contratado.
+
+                        No SEI:
+
+                        Inserir como Documento Interno;
+
+                        Referenciar a Nota Fiscal;
+
+                        Assinar eletronicamente.
+
+                        📌 Inserir imagem da folha de atesto no SEI.
+                    </h6>
+                </li>
+                <br>
+                <li>
+                    <h6>
+                        3. Termo de Recebimento Provisório
+
+                        Quando aplicável, formaliza o recebimento inicial do objeto.
+
+                        No SEI:
+
+                        Inserir como documento interno;
+
+                        Assinatura do responsável técnico.
+
+                        📌 Inserir imagem correspondente.
+                    </h6>
+                </li>
+                <br>
+                <li>
+                    <h6>
+                        4. Termo de Recebimento Definitivo
+
+                        Confirma que o objeto atende integralmente às especificações contratuais.
+
+                        No SEI:
+
+                        Inserir documento interno;
+
+                        Assinatura eletrônica;
+
+                        Vincular ao processo principal.
+
+                        📌 Inserir imagem correspondente.
+                    </h6>
+                </li>
+                <br>
+                <br>
+                <li>
+                    <h6>
+                        5. Consulta Simples
+
+                        Realizar consulta da regularidade fiscal do fornecedor (Receita Federal).
+
+                        Salvar comprovante em PDF;
+
+                        Inserir como Documento Externo no SEI.
+
+                        📌 Inserir imagem da consulta anexada.
+                    </h6>
+                </li>
+                <br>
+                <br>
+                <li>
+                    <h6>
+                        6. Declaração Simples
+
+                        Declaração registrando que a consulta foi realizada na data do pagamento.
+
+                        Inserir como Documento Interno;
+
+                        Assinar eletronicamente.
+
+                        📌 Inserir imagem.
+                    </h6>
+                </li>
+                <br>
+                <br>
+                <li>
+                    <h6>
+                        7. SICAF
+
+                        Consulta ao Sistema de Cadastramento Unificado de Fornecedores (SICAF) para verificar:
+
+                        Regularidade fiscal;
+
+                        Regularidade trabalhista;
+
+                        Impedimentos.
+
+                        Salvar a certidão;
+
+                        Anexar no SEI.
+
+                        📌 Inserir imagem da tela do SICAF.
+                    </h6>
+                </li>
+                <br>
+                <br>
+                <li>
+                    <h6>
+                        8. Consulta Consolidada TCU
+
+                        Consulta ao Tribunal de Contas da União (TCU) para verificar sanções vigentes.
+
+                        Gerar comprovante;
+
+                        Anexar ao processo no SEI.
+
+                        📌 Inserir imagem da consulta.
+                    </h6>
+                </li>
+                <br>
+
+                <br>
+                <li>
+                    <h6>
+                        9. Instrumento de Cobrança (Anexo)
+
+                        Documento formal de cobrança (fatura ou equivalente).
+
+                        Inserir como Documento Externo;
+
+                        Conferir compatibilidade com Nota Fiscal e empenho.
+
+                        📌 Inserir imagem.
+                    </h6>
+                </li>
+                <br><br>
+                <li>
+                    <h6>
+                        10. Folha de Informação – Pagamento
+
+                        Documento interno que consolida a instrução e encaminha para liquidação.
+
+                        No SEI:
+
+                        Inserir como Documento Interno;
+
+                        Assinar eletronicamente;
+
+                        Encaminhar à unidade financeira.
+
+                        📌 Inserir imagem da tramitação.
+                    </h6>
+                </li>
+                <br>
+                <br>
+                <li>
+                    <h6>
+                        Resultado Final:
+                    </h6>
+                    <img src="Imagens/Pagamento/Ordem_documentos.jpeg" alt="Ordem_documentos" class="imagem-click">
+                </li>
+                <br>
+            </ul>
         </section>
 
         <!-- PROCESSO TOMBAMENTO -->
@@ -637,20 +582,22 @@
                     <h3>Essa é a tela inicial, clique em iniciar o processo:</h3>
                 </li>
                 <br>
-                <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso">
+                <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" alt="iniciandoProcesso"
+                    class="imagem-click">
                 <br>
                 <li>
                     <h3>Selecione o tipo de processo:</h3>
                 </li>
                 <br>
-                <img src="Imagens/Abrir_processo/Escolhendo_tipo_de_processo.jpeg" alt="EscolhaProcesso">
+                <img src="Imagens/Abrir_processo/Escolhendo_tipo_de_processo.jpeg" alt="EscolhaProcesso"
+                    class="imagem-click">
                 <br>
                 <li>
                     <h3>Essa será a sua tela seguinte, Processos de Licitação não são públicos: escolha 'Sigiloso' ou
                         'Restrito':</h3>
                 </li>
                 <br>
-                <img src="Imagens/Processo_licitacao/escolha_do_processo.jpeg" alt="encerramento">
+                <img src="Imagens/Processo_licitacao/escolha_do_processo.jpeg" alt="encerramento" class="imagem-click">
                 <br>
                 <li>
                     <h2>Continua...</h2>
@@ -676,155 +623,28 @@
             <p>Ordem dos anexos obrigatórios no processo e uso de modelos.</p>
         </section>
 
-        <!-- LINKS ÚTEIS -->
-        <section id="links">
-            <h2>Links Úteis</h2>
-            <ul>
-                <li><a href="https://email.ufrj.br/rc/?_task=mail&_mbox=INBOX" target="_blank">E-mail</a></li>
-                <li><a href="https://sei.ufrj.br/sip/login.php?sigla_orgao_sistema=UFRJ&sigla_sistema=SEI"
-                        target="_blank">Sei</a></li>
-                <li><a href="https://sisufrj.ufrj.br/sipac/" target="_blank">SisUFRJ</a></li>
-                <li><a href="https://pr6.nuvem.ufrj.br/apps/files/?dir=/DGEMM-CGLIC-SGG&fileid=1312307"
-                        target="_blank">Nuvem</a></li>
-                <li><a href="https://drive.google.com/drive/folders/1KpVIeuMPTpZwL4d4lKICxONLogiuhhIL"
-                        target="_blank">Drive</a></li>
-            </ul>
+        <section id="Home_Office">
+            <h2>Escala Home Office</h2>
+            <ul id="listaHomeOffice"></ul>
         </section>
+
+        <section id="Férias">
+            <h2>Férias do Mês</h2>
+            <ul id="listaFerias"></ul>
+        </section>
+
+        <section id="Aniversariantes">
+            <h2>Aniversariantes do Mês</h2>
+            <ul id="listaAniversariantes"></ul>
+        </section>
+
     </main>
-
-    <!-- Popup aniversariantes -->
-    <div id="birthday-popup" class="birthday-popup">
-        <strong>🎉 Aniversariantes</strong>
-        <span id="birthday-popup-text">Nenhum aniversariante encontrado.</span>
+    <!-- MODAL PARA AMPLIAR IMAGEM -->
+    <div id="modalImagem" class="modal">
+        <span class="fechar">&times;</span>
+        <img class="modal-conteudo" id="imgModal">
     </div>
-
-    <script>
-        // ================================
-        // LISTA DE ANIVERSARIANTES (APENAS NO CÓDIGO)
-        // ================================
-        // Você só precisa editar essa parte para manter tudo atualizado.
-        const aniversariantesPorMes = {
-            1: [ { nome: "Walmir", dia: 15 }, { nome: "Delson", dia: 17 }, { nome: "Farlei", dia: 24 } ],
-            2: [ { nome: "Marcia", dia: 8 } ],
-            4: [ { nome: "Osvaldo", dia: 6 }, { nome: "Carlos Eduardo", dia: 22 } ],
-            5: [ { nome: "Philipe", dia: 12 }, {nome: "Carlos Augusto", dia: 29} ],
-            6: [ { nome: "Fletcher", dia: 22 }, { nome: "Washington", dia: 24 }, { nome: "Alexandre", dia: 26 } ],
-            7: [ { nome: "Vladimir", dia: 4 } ],
-            8: [ { nome: "Hedes", dia: 26 } ],
-            10: [{ nome: "Flávio", dia: 9 }, { nome: "Marquinhos", dia: 25 }],
-            11: [ { nome: "Diogo", dia: 23 } ]
-            // Adicione outros meses se precisar:
-            // 12: [ { nome: "Fulano", dia: 25 }, ... ]
-        };
-
-        // Gera lista "plana" a partir do agrupado por mês
-        const aniversariantes = Object.entries(aniversariantesPorMes).flatMap(([mes, lista]) =>
-            lista.map(pessoa => ({
-                nome: pessoa.nome,
-                dia: pessoa.dia,
-                mes: Number(mes)
-            }))
-        );
-
-        function getAniversariantesDeHoje() {
-            const hoje = new Date();
-            const dia = hoje.getDate();
-            const mes = hoje.getMonth() + 1; // Janeiro = 0 -> +1
-
-            return aniversariantes.filter(a => a.dia === dia && a.mes === mes);
-        }
-
-        function getAniversariantesDoMesAtual() {
-            const hoje = new Date();
-            const mes = hoje.getMonth() + 1;
-            return aniversariantes.filter(a => a.mes === mes);
-        }
-
-        function mostrarPopupAniversariantes(texto, falar = false) {
-            const pop = document.getElementById('birthday-popup');
-            const span = document.getElementById('birthday-popup-text');
-            if (!pop || !span) return;
-
-            span.textContent = texto;
-            pop.style.display = 'block';
-
-            if (falar && 'speechSynthesis' in window) {
-                const msg = new SpeechSynthesisUtterance(texto);
-                msg.lang = 'pt-BR';
-                speechSynthesis.speak(msg);
-            }
-
-            setTimeout(() => {
-                pop.style.display = 'none';
-            }, 8000);
-        }
-
-        function mostrarAniversariantesDoMes() {
-            const lista = getAniversariantesDoMesAtual();
-            if (lista.length === 0) {
-                mostrarPopupAniversariantes('Não há aniversariantes cadastrados para este mês.');
-                return;
-            }
-            const nomes = lista.map(a => `${a.nome} - dia ${a.dia}`).join('; ');
-            mostrarPopupAniversariantes(`Aniversariantes deste mês: ${nomes}`);
-        }
-
-        function showTab(id) {
-            document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
-            const target = document.getElementById(id);
-            if (target) {
-                target.classList.add('active');
-                const crumb = document.querySelector('.breadcrumb span');
-                if (crumb) {
-                    crumb.textContent = id.replace(/_/g, ' ');
-                }
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        function toggleSubmenu(id) {
-            const el = document.getElementById(id);
-            if (!el) return;
-
-            const isOpen = el.style.display === 'flex' || el.style.display === 'block';
-            const container = el.parentElement.parentElement;
-
-            container.querySelectorAll('.submenu, .subsubmenu').forEach(menu => {
-                if (menu !== el) {
-                    menu.style.display = 'none';
-                }
-            });
-
-            if (isOpen) {
-                el.style.display = 'none';
-            } else {
-                el.style.display = 'flex';
-                el.style.flexDirection = 'column';
-            }
-        }
-
-        // Ao carregar, verifica se hoje tem aniversariante
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const hoje = getAniversariantesDeHoje();
-                if (hoje.length === 0) return;
-
-                let texto;
-                if (hoje.length === 1) {
-                    texto = `Parabéns, ${hoje[0].nome}, pelo seu aniversário de hoje! 🎂`;
-                } else {
-                    const nomes = hoje.map(a => a.nome).join(', ');
-                    texto = `Parabéns aos aniversariantes de hoje: ${nomes}! 🎂`;
-                }
-
-                mostrarPopupAniversariantes(texto, true);
-            }, 2000);
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

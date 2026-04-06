@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Operacional - Almoxarifado</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<nav id="sidebar">
+    <h2>Almoxarifado</h2>
+
+    <input type="text" id="search" placeholder="Buscar...">
+
+    <a href="#" class="menu-link" data-section="sobre">Sobre</a>
+    <a href="#" class="menu-link" data-section="noticias">Notícias</a>
+
+    <button class="submenu-toggle" data-target="submenuSEI">SEI</button>
+    <div id="submenuSEI" class="submenu">
+        <a href="#" class="menu-link" data-section="Iniciar_Processo">Iniciar Processo</a>
+        <a href="#" class="menu-link" data-section="Processo_Pagamento">Pagamento</a>
+    </div>
+</nav>
+
+<header>
+    <button id="toggleSidebar">☰</button>
+    <h1>Guia Operacional - UFRJ</h1>
+</header>
+
+<main>
+
+<section id="sobre" class="active">
+    <h2>Sobre</h2>
+    <p>Bem-vindo ao sistema do Almoxarifado.</p>
+</section>
+
+<section id="noticias">
+    <h2>Notícias</h2>
+    <p>Atualizações do setor.</p>
+</section>
+
+<section id="Iniciar_Processo">
+    <h2>Iniciar Processo</h2>
+    <img src="Imagens/Abrir_processo/Iniciando_o_processo.jpeg" class="imagem-click" loading="lazy">
+</section>
+
+<section id="Processo_Pagamento">
+    <h2>Processo de Pagamento</h2>
+    <p>Fluxo completo do processo.</p>
+</section>
+
+</main>
+
+<!-- MODAL -->
+<div id="modalImagem" class="modal">
+    <span class="fechar">&times;</span>
+    <img id="imgModal">
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
