@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
 ========================================== */
 
 const escalaHomeOffice = {
-    1: { servidores: ["Hedes", "Vladimir"], apd: ["Carlos", "Farlei"] },
-    2: { servidores: ["Philipe"], apd: ["Carlos"] },
-    3: { servidores: ["Hedes", "Vladimir"], apd: ["Philipe", "Farlei"] },
+    1: { servidores: ["Hedes", "Vladimir"], apd: ["Carlos"] },
+    2: { servidores: ["Philipe"], apd: ["Farlei"] },
+    3: { servidores: ["Hedes", "Vladimir", "Philipe"], apd: ["Carlos", "Farlei"] },
     4: { servidores: ["Vladimir"], apd: ["Carlos"] },
     5: { servidores: ["Hedes", "Philipe"], apd: ["Farlei"] }
 };
@@ -167,8 +167,8 @@ function carregarHomeOffice() {
         container.innerHTML += `
             <li>
                 <strong>${dias[i - 1]}:</strong><br>
-                Servidores: ${dados?.servidores.join(", ") || "—"}<br>
-                APD: ${dados?.apd.join(", ") || "—"}
+                <b>Servidores:</b> ${dados?.servidores.join(", ") || "—"}<br>
+                <b>APD:</b> ${dados?.apd.join(", ") || "—"}
             </li>
         `;
     }
@@ -267,10 +267,11 @@ function carregarResumo() {
         const dados = escalaHomeOffice[i];
 
         homeDiv.innerHTML += `
-            <p>
-                <strong>${dias[i - 1]}:</strong><br>
-                ${dados?.servidores.join(", ") || "—"}
-            </p>
+        <p>
+        <strong>${dias[i - 1]}:</strong><br>
+        <b>Servidores:</b> ${dados?.servidores.join(", ") || "—"}<br>
+        <b>APD:</b> ${dados?.apd.join(", ") || "—"}
+        </p>
         `;
     }
 
