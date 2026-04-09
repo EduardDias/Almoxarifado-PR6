@@ -10,12 +10,46 @@ document.addEventListener("DOMContentLoaded", function () {
         section.style.display = "none";
     });
 
-    // Mostra a section que estiver com class="active"
+    // Mostra a section inicial
     const sectionInicial = document.querySelector("section.active");
     if (sectionInicial) {
         sectionInicial.style.display = "block";
     }
+
     carregarResumo();
+    atualizarAutomaticamente();
+
+    /* ==========================================
+       MODAL IMAGEM (AGORA SEGURO)
+    ========================================== */
+
+    const modal = document.getElementById("modalImagem");
+    const modalImg = document.getElementById("imgModal");
+    const fechar = document.querySelector(".fechar");
+
+    document.querySelectorAll(".imagem-click").forEach(img => {
+        img.addEventListener("click", function () {
+            if (modal && modalImg) {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+    });
+
+    if (fechar) {
+        fechar.onclick = function () {
+            modal.style.display = "none";
+        };
+    }
+
+    if (modal) {
+        modal.onclick = function (e) {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    }
+
 });
 
 
@@ -23,33 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
    DADOS
 ========================================== */
 
-// ESCALA HOME OFFICE (SEMANA COMPLETA)
-
 const escalaHomeOffice = {
-    1: {
-        servidores: ["Hedes", "Vladimir"],
-        apd: ["Carlos", "Farlei"]
-    },
-    2: {
-        servidores: ["Philipe"],
-        apd: ["Carlos"]
-    },
-    3: {
-        servidores: ["Hedes", "Vladimir"],
-        apd: ["Philipe", "Farlei"]
-    },
-    4: {
-        servidores: ["Vladimir"],
-        apd: ["Carlos"]
-    },
-    5: {
-        servidores: ["Hedes", "Philipe"],
-        apd: ["Farlei"]
-    }
-};      // Sexta
+    1: { servidores: ["Hedes", "Vladimir"], apd: ["Carlos", "Farlei"] },
+    2: { servidores: ["Philipe"], apd: ["Carlos"] },
+    3: { servidores: ["Hedes", "Vladimir"], apd: ["Philipe", "Farlei"] },
+    4: { servidores: ["Vladimir"], apd: ["Carlos"] },
+    5: { servidores: ["Hedes", "Philipe"], apd: ["Farlei"] }
+};
 
-
-// FÉRIAS
 const dadosFerias = [
     { nome: "Alexandre", inicio: "2026-07-20", fim: "2026-07-29" },
     { nome: "Alexandre", inicio: "2026-09-14", fim: "2026-09-23" },
@@ -61,12 +76,9 @@ const dadosFerias = [
     { nome: "Philipe", inicio: "2027-01-04", fim: "2027-01-13" },
     { nome: "Farlei", inicio: "2026-07-22", fim: "2026-07-31" },
     { nome: "Farlei", inicio: "2026-09-08", fim: "2026-09-18" },
-    { nome: "Carlos", inicio: "2026-05-04", fim: "2026-06-03" },
-
-
+    { nome: "Carlos", inicio: "2026-05-04", fim: "2026-06-03" }
 ];
 
-// ANIVERSÁRIOS
 const dadosAniversarios = [
     { nome: "Walmir", dia: 15, mes: 1 },
     { nome: "Delson", dia: 17, mes: 1 },
@@ -93,28 +105,25 @@ const dadosAniversarios = [
 
 function showSection(id) {
 
-    const sections = document.querySelectorAll("main section");
+    try {
 
-    sections.forEach(section => {
-        section.style.display = "none";
-    });
+        document.querySelectorAll("main section").forEach(section => {
+            section.style.display = "none";
+            section.classList.remove("active");
+        });
 
-    const target = document.getElementById(id);
-    if (target) {
+        const target = document.getElementById(id);
+
+        if (!target) {
+            console.error("Section não encontrada:", id);
+            return;
+        }
+
         target.style.display = "block";
-    }
+        target.classList.add("active");
 
-    // Carrega dados conforme a aba
-    if (id === "Home_Office") {
-        carregarHomeOffice();
-    }
-
-    if (id === "Férias") {
-        carregarFerias();
-    }
-
-    if (id === "Aniversariantes") {
-        carregarAniversarios();
+    } catch (error) {
+        console.error("Erro ao trocar section:", error);
     }
 }
 
@@ -125,8 +134,7 @@ function showSection(id) {
 
 function toggleSubmenu(id) {
     const submenu = document.getElementById(id);
-    if (!submenu) return;
-    submenu.classList.toggle("open");
+    if (submenu) submenu.classList.toggle("open");
 }
 
 
@@ -136,12 +144,12 @@ function toggleSubmenu(id) {
 
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("collapsed");
+    if (sidebar) sidebar.classList.toggle("collapsed");
 }
 
 
 /* ==========================================
-   HOME OFFICE (SEMANA COMPLETA)
+   HOME OFFICE
 ========================================== */
 
 function carregarHomeOffice() {
@@ -151,47 +159,34 @@ function carregarHomeOffice() {
 
     container.innerHTML = "";
 
-    const dias = {
-        1: "Segunda-feira",
-        2: "Terça-feira",
-        3: "Quarta-feira",
-        4: "Quinta-feira",
-        5: "Sexta-feira"
-    };
+    const dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
-    for (let dia = 1; dia <= 5; dia++) {
+    for (let i = 1; i <= 5; i++) {
+        const dados = escalaHomeOffice[i];
 
-        const dados = escalaHomeOffice[dia];
-
-        if (dados) {
-            container.innerHTML += `
-                <li>
-                    <strong>${dias[dia]}:</strong><br>
-                    Servidores: ${dados.servidores.join(", ")}<br>
-                    APD: ${dados.apd.join(", ")}
-                </li>
-            `;
-        } else {
-            container.innerHTML += `<li>${dias[dia]}: Não definido</li>`;
-        }
+        container.innerHTML += `
+            <li>
+                <strong>${dias[i - 1]}:</strong><br>
+                Servidores: ${dados?.servidores.join(", ") || "—"}<br>
+                APD: ${dados?.apd.join(", ") || "—"}
+            </li>
+        `;
     }
 }
 
 
-
 /* ==========================================
-   FÉRIAS (MÊS ATUAL)
+   FÉRIAS
 ========================================== */
 
 function carregarFerias() {
-
-    const hoje = new Date();
-    const mesAtual = hoje.getMonth();
 
     const lista = document.getElementById("listaFerias");
     if (!lista) return;
 
     lista.innerHTML = "";
+
+    const mesAtual = new Date().getMonth();
 
     const filtrados = dadosFerias.filter(p => {
         const inicio = new Date(p.inicio);
@@ -199,136 +194,101 @@ function carregarFerias() {
         return inicio.getMonth() === mesAtual || fim.getMonth() === mesAtual;
     });
 
-    if (filtrados.length === 0) {
+    if (!filtrados.length) {
         lista.innerHTML = "<li>Ninguém de férias este mês.</li>";
         return;
     }
 
     filtrados.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = `${p.nome} (${p.inicio} até ${p.fim})`;
-        lista.appendChild(li);
+        lista.innerHTML += `<li>${p.nome} (${p.inicio} até ${p.fim})</li>`;
     });
 }
 
 
 /* ==========================================
-   ANIVERSÁRIOS (MÊS ATUAL)
+   ANIVERSÁRIOS
 ========================================== */
 
 function carregarAniversarios() {
-
-    const mesAtual = new Date().getMonth() + 1;
 
     const lista = document.getElementById("listaAniversariantes");
     if (!lista) return;
 
     lista.innerHTML = "";
 
+    const mesAtual = new Date().getMonth() + 1;
+
     const filtrados = dadosAniversarios.filter(p => p.mes === mesAtual);
 
-    if (filtrados.length === 0) {
+    if (!filtrados.length) {
         lista.innerHTML = "<li>Sem aniversariantes este mês.</li>";
         return;
     }
 
     filtrados.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = `${p.nome} - dia ${p.dia}`;
-        lista.appendChild(li);
+        lista.innerHTML += `<li>${p.nome} - dia ${p.dia}</li>`;
     });
 }
-const modal = document.getElementById("modalImagem");
-const modalImg = document.getElementById("imgModal");
-const fechar = document.querySelector(".fechar");
 
-document.querySelectorAll(".imagem-click").forEach(img => {
-    img.addEventListener("click", function () {
-        modal.style.display = "block";
-        modalImg.src = this.src;
-    });
-});
 
-fechar.onclick = function () {
-    modal.style.display = "none";
-};
+/* ==========================================
+   ATUALIZAÇÃO AUTOMÁTICA
+========================================== */
 
-modal.onclick = function (e) {
-    if (e.target === modal) {
-        modal.style.display = "none";
-    }
-};
 function atualizarAutomaticamente() {
-
     carregarHomeOffice();
     carregarFerias();
     carregarAniversarios();
-
-    console.log("Dados atualizados automaticamente");
 }
 
-// Atualiza ao abrir
-atualizarAutomaticamente();
-
-// Atualiza a cada 1 hora (profissional)
+// Atualiza a cada 1h
 setInterval(atualizarAutomaticamente, 60 * 60 * 1000);
+
+
+/* ==========================================
+   RESUMO (HOME)
+========================================== */
 
 function carregarResumo() {
 
-    // HOME OFFICE
     const homeDiv = document.getElementById("homeOfficeResumo");
+    const feriasDiv = document.getElementById("feriasResumo");
+    const anivDiv = document.getElementById("aniversariosResumo");
+
+    if (!homeDiv || !feriasDiv || !anivDiv) return;
+
+    homeDiv.innerHTML = "";
+    feriasDiv.innerHTML = "";
+    anivDiv.innerHTML = "";
+
     const dias = ["Seg", "Ter", "Qua", "Qui", "Sex"];
 
     for (let i = 1; i <= 5; i++) {
-
         const dados = escalaHomeOffice[i];
 
-        if (dados) {
-            homeDiv.innerHTML += `
+        homeDiv.innerHTML += `
             <p>
                 <strong>${dias[i - 1]}:</strong><br>
-                Servidores: ${dados.servidores.join(", ")}<br>
-                APD: ${dados.apd.join(", ")}
+                ${dados?.servidores.join(", ") || "—"}
             </p>
         `;
-        } else {
-            homeDiv.innerHTML += `<p><strong>${dias[i - 1]}:</strong> Não definido</p>`;
-        }
     }
 
-    // FÉRIAS
-    const feriasDiv = document.getElementById("feriasResumo");
-    if (feriasDiv) {
-        const mesAtual = new Date().getMonth();
+    const mesAtual = new Date().getMonth();
 
-        const filtrados = dadosFerias.filter(p => {
-            const inicio = new Date(p.inicio);
-            const fim = new Date(p.fim);
-            return inicio.getMonth() === mesAtual || fim.getMonth() === mesAtual;
-        });
+    const ferias = dadosFerias.filter(p => {
+        const inicio = new Date(p.inicio);
+        const fim = new Date(p.fim);
+        return inicio.getMonth() === mesAtual || fim.getMonth() === mesAtual;
+    });
 
-        if (filtrados.length === 0) {
-            feriasDiv.innerHTML = "<p>Ninguém de férias</p>";
-        } else {
-            feriasDiv.innerHTML = filtrados.map(p =>
-                `<p>${p.nome}</p>`
-            ).join("");
-        }
-    }
+    feriasDiv.innerHTML = ferias.length
+        ? ferias.map(p => `<p>${p.nome}</p>`).join("")
+        : "<p>Ninguém de férias</p>";
 
-    // ANIVERSÁRIOS
-    const anivDiv = document.getElementById("aniversariosResumo");
-    if (anivDiv) {
-        const mesAtual = new Date().getMonth() + 1;
+    const aniversarios = dadosAniversarios.filter(p => p.mes === mesAtual + 1);
 
-        const filtrados = dadosAniversarios.filter(p => p.mes === mesAtual);
-
-        if (filtrados.length === 0) {
-            anivDiv.innerHTML = "<p>Nenhum</p>";
-        } else {
-            anivDiv.innerHTML = filtrados.map(p =>
-                `<p>${p.nome} (${p.dia})</p>`
-            ).join("");
-        }
-    }
+    anivDiv.innerHTML = aniversarios.length
+        ? aniversarios.map(p => `<p>${p.nome} (${p.dia})</p>`).join("")
+        : "<p>Nenhum</p>";
 }

@@ -21,18 +21,22 @@
             <span>Sobre</span>
         </a>
 
+        <a onclick="showSection('Aniversariantes')">
+            <i class="fas fa-cake-candles"></i>
+            <span>Aniversariantes</span>
+        </a>
+
         <a onclick="showSection('noticias')">
             <i class="fas fa-newspaper"></i>
             <span>Notícias</span>
         </a>
 
-        <!-- BOTÃO PROCESSOS -->
+                <!-- BOTÃO SEI -->
         <a onclick="toggleSubmenu('submenuSEI')">
             <i class="fas fa-folder"></i>
             <span>SEI</span>
         </a>
 
-        <!-- SUBMENU -->
         <div id="submenuSEI" class="submenu">
             <a onclick="showSection('Iniciar_Processo')">Iniciar Processo</a>
             <a onclick="showSection('Atestado_Capacidade_tecnica')">Atestado</a>
@@ -45,6 +49,7 @@
             <a onclick="showSection('pagamento2')">Pagamento - Documentação</a>
         </div>
 
+        <!-- SISUFRJ -->
         <a onclick="toggleSubmenu('submenuSisUFRJ')">
             <i class="fas fa-folder"></i>
             <span>SisUFRJ</span>
@@ -56,6 +61,7 @@
             <a onclick="showSection('Saida')">Saída de Materiais</a>
         </div>
 
+        <!-- INFORMATIVO -->
         <a onclick="toggleSubmenu('submenuInformativo')">
             <i class="fas fa-home"></i>
             <span>Informativo</span>
@@ -66,6 +72,13 @@
             <a onclick="showSection('Férias')">Férias</a>
             <a onclick="showSection('Aniversariantes')">Aniversariantes</a>
         </div>
+
+        <a onclick="showSection('linksExternos')">
+            <i class="fas fa-link"></i>
+            <span>Links</span>
+        </a>
+
+
     </nav>
 
     <header>
@@ -623,6 +636,20 @@
             <p>Ordem dos anexos obrigatórios no processo e uso de modelos.</p>
         </section>
 
+        <section id="linksExternos">
+            <h2> Links Úteis</h2>
+             <ul>
+                <li><a href="https://email.ufrj.br/rc/?_task=mail&_mbox=INBOX" target="_blank">E-mail</a></li>
+                <li><a href="https://sei.ufrj.br/sip/login.php?sigla_orgao_sistema=UFRJ&sigla_sistema=SEI"
+                        target="_blank">Sei</a></li>
+                <li><a href="https://sisufrj.ufrj.br/sipac/" target="_blank">SisUFRJ</a></li>
+                <li><a href="https://pr6.nuvem.ufrj.br/apps/files/?dir=/DGEMM-CGLIC-SGG&fileid=1312307"
+                        target="_blank">Nuvem</a></li>
+                <li><a href="https://drive.google.com/drive/folders/1KpVIeuMPTpZwL4d4lKICxONLogiuhhIL"
+                        target="_blank">Drive</a></li>
+            </ul>
+        </section>
+
         <section id="Home_Office">
             <h2>Escala Home Office</h2>
             <ul id="listaHomeOffice"></ul>
@@ -639,12 +666,14 @@
         </section>
 
     </main>
+
+    <script src="js/script.js"></script>
     <!-- MODAL PARA AMPLIAR IMAGEM -->
     <div id="modalImagem" class="modal">
         <span class="fechar">&times;</span>
         <img class="modal-conteudo" id="imgModal">
     </div>
-    <script src="js/script.js"></script>
+
 </body>
 
 </html>
