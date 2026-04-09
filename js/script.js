@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     carregarResumo();
     atualizarAutomaticamente();
+    gerarPeriodoSemana();
 
     /* ==========================================
        MODAL IMAGEM (AGORA SEGURO)
@@ -281,6 +282,28 @@ function carregarResumo() {
         const inicio = new Date(p.inicio);
         const fim = new Date(p.fim);
         return inicio.getMonth() === mesAtual || fim.getMonth() === mesAtual;
+
+        function formatarData(data) {
+            return data.toLocaleDateString("pt-BR");
+        }
+
+        function obterSemanaAtual() {
+            const hoje = new Date();
+
+            const diaSemana = hoje.getDay();
+            const diff = hoje.getDate() - diaSemana + (diaSemana === 0 ? -6 : 1);
+
+            const segunda = new Date(hoje.setDate(diff));
+            const sexta = new Date(segunda);
+            sexta.setDate(segunda.getDate() + 4);
+
+            return {
+                inicio: formatarData(segunda),
+                fim: formatarData(sexta)
+            };
+        }
+        
+
     });
 
     feriasDiv.innerHTML = ferias.length
@@ -292,4 +315,30 @@ function carregarResumo() {
     anivDiv.innerHTML = aniversarios.length
         ? aniversarios.map(p => `<p>${p.nome} (${p.dia})</p>`).join("")
         : "<p>Nenhum</p>";
+}
+
+function gerarPeriodoSemana() {
+
+    const hoje = new Date();
+
+    const diaSemana = hoje.getDay(); // 0 (Dom) a 6 (Sáb)
+    const diffSegunda = (diaSemana === 0 ? -6 : 1 - diaSemana);
+
+    const segunda = new Date(hoje);
+    segunda.setDate(hoje.getDate() + diffSegunda);
+
+    const sexta = new Date(segunda);
+    sexta.setDate(segunda.getDate() + 4);
+
+    const formatar = (data) => {
+        const dia = String(data.getDate()).padStart(2, '0');
+        const mes = String(data.getMonth() + 1).padStart(2, '0');
+        const ano = data.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
+
+    const periodo = `(${formatar(segunda)} a ${formatar(sexta)})`;
+
+    const div = document.getElementById("periodoEscala");
+    if (div) div.innerHTML = `<strong>${periodo}</strong>`;
 }

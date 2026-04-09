@@ -31,7 +31,7 @@
             <span>Notícias</span>
         </a>
 
-                <!-- BOTÃO SEI -->
+        <!-- BOTÃO SEI -->
         <a onclick="toggleSubmenu('submenuSEI')">
             <i class="fas fa-folder"></i>
             <span>SEI</span>
@@ -77,7 +77,7 @@
             <i class="fas fa-link"></i>
             <span>Links</span>
         </a>
-
+        
 
     </nav>
 
@@ -85,7 +85,7 @@
         <button onclick="toggleSidebar()" class="toggle-btn">
             <i class="fas fa-bars"></i>
         </button>
-        <h1>Guia Operacional - UFRJ</h1>
+        <h1> Guia Operacional - UFRJ </h1>
     </header>
 
     <main>
@@ -100,8 +100,14 @@
             <div class="painel-info">
 
                 <div class="card-info">
-                    <h3>📅 Escala Presencial</h3>
+
+                    <div class="card-header">
+                        <h3>📅 Escala Presencial</h3>
+                        <span id="periodoEscala"></span>
+                    </div>
+
                     <div id="homeOfficeResumo"></div>
+
                 </div>
 
                 <div class="card-info">
@@ -638,7 +644,7 @@
 
         <section id="linksExternos">
             <h2> Links Úteis</h2>
-             <ul>
+            <ul>
                 <li><a href="https://email.ufrj.br/rc/?_task=mail&_mbox=INBOX" target="_blank">E-mail</a></li>
                 <li><a href="https://sei.ufrj.br/sip/login.php?sigla_orgao_sistema=UFRJ&sigla_sistema=SEI"
                         target="_blank">Sei</a></li>
@@ -665,6 +671,16 @@
             <ul id="listaAniversariantes"></ul>
         </section>
 
+        <section id="gerenciarEscala">
+            <h2>Gerenciar Escala</h2>
+
+            <label>Semana (segunda-feira):</label>
+            <input type="date" id="dataSemana">
+
+            <div id="formEscala"></div>
+
+            <button onclick="salvarEscala()">Salvar Escala</button>
+        </section>
     </main>
 
     <script src="js/script.js"></script>

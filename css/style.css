@@ -252,3 +252,22 @@ img {
     background: #e2e8f0;
     transform: translateY(-3px);
 }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* evita quebrar layout em telas menores */
+    margin-bottom: 10px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+#periodoEscala {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
