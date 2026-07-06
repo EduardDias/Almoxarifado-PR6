@@ -78,7 +78,31 @@ const dadosFerias = [
     { nome: "Farlei", inicio: "2026-07-22", fim: "2026-07-31" },
     { nome: "Farlei", inicio: "2026-09-08", fim: "2026-09-18" },
     { nome: "Carlos", inicio: "2026-05-04", fim: "2026-06-03" }
-];
+] /* ==========================================
+   FÉRIAS - FUNÇÕES AUXILIARES
+========================================== */
+
+function formatarDataBR(dataTexto) {
+    const data = new Date(dataTexto + "T00:00:00");
+
+    return data.toLocaleDateString("pt-BR");
+}
+
+function estaDeFerias(nome) {
+
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
+    return dadosFerias.some(p => {
+
+        if (p.nome !== nome) return false;
+
+        const inicio = new Date(p.inicio + "T00:00:00");
+        const fim = new Date(p.fim + "T23:59:59");
+
+        return hoje >= inicio && hoje <= fim;
+    });
+};
 
 const dadosAniversarios = [
     { nome: "Walmir", dia: 15, mes: 1 },
@@ -96,7 +120,8 @@ const dadosAniversarios = [
     { nome: "Hedes", dia: 26, mes: 8 },
     { nome: "Flávio", dia: 9, mes: 10 },
     { nome: "Marquinhos", dia: 25, mes: 10 },
-    { nome: "Hedes", dia: 23, mes: 11 }
+    { nome: "Hedes", dia: 23, mes: 11 },
+    { nome: "Philipe", dia: 12, mes: 5 }
 ];
 
 
@@ -163,16 +188,29 @@ function carregarHomeOffice() {
     const dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
     for (let i = 1; i <= 5; i++) {
+
         const dados = escalaHomeOffice[i];
+
+        const servidores = dados.servidores.filter(nome => !estaDeFerias(nome));
+
+        const apd = dados.apd.filter(nome => !estaDeFerias(nome));
 
         container.innerHTML += `
             <li>
                 <strong>${dias[i - 1]}:</strong><br>
-                <b>Servidores:</b> ${dados?.servidores.join(", ") || "—"}<br>
-                <b>APD:</b> ${dados?.apd.join(", ") || "—"}
+
+                <b>Servidores:</b>
+                ${servidores.length ? servidores.join(", ") : "—"}
+
+                <br>
+
+                <b>APD:</b>
+                ${apd.length ? apd.join(", ") : "—"}
+
             </li>
         `;
     }
+
 }
 
 
@@ -187,22 +225,36 @@ function carregarFerias() {
 
     lista.innerHTML = "";
 
-    const mesAtual = new Date().getMonth();
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
 
-    const filtrados = dadosFerias.filter(p => {
-        const inicio = new Date(p.inicio);
-        const fim = new Date(p.fim);
-        return inicio.getMonth() === mesAtual || fim.getMonth() === mesAtual;
+    const feriasAtuais = dadosFerias.filter(p => {
+
+        const inicio = new Date(p.inicio + "T00:00:00");
+        const fim = new Date(p.fim + "T23:59:59");
+
+        return hoje >= inicio && hoje <= fim;
+
     });
 
-    if (!filtrados.length) {
-        lista.innerHTML = "<li>Ninguém de férias este mês.</li>";
+    if (!feriasAtuais.length) {
+
+        lista.innerHTML = "<li>Ninguém de férias.</li>";
         return;
+
     }
 
-    filtrados.forEach(p => {
-        lista.innerHTML += `<li>${p.nome} (${p.inicio} até ${p.fim})</li>`;
+    feriasAtuais.forEach(p => {
+
+        lista.innerHTML += `
+            <li>
+                <strong>${p.nome}</strong><br>
+                ${formatarDataBR(p.inicio)} até ${formatarDataBR(p.fim)}
+            </li>
+        `;
+
     });
+
 }
 
 
@@ -265,56 +317,52 @@ function carregarResumo() {
     const dias = ["Seg", "Ter", "Qua", "Qui", "Sex"];
 
     for (let i = 1; i <= 5; i++) {
+
         const dados = escalaHomeOffice[i];
+
+        const servidores = dados.servidores.filter(nome => !estaDeFerias(nome));
+        const apd = dados.apd.filter(nome => !estaDeFerias(nome));
 
         homeDiv.innerHTML += `
         <p>
-        <strong>${dias[i - 1]}:</strong><br>
-        <b>Servidores:</b> ${dados?.servidores.join(", ") || "—"}<br>
-        <b>APD:</b> ${dados?.apd.join(", ") || "—"}
+            <strong>${dias[i - 1]}:</strong><br>
+            <b>Servidores:</b> ${servidores.length ? servidores.join(", ") : "—"}<br>
+            <b>APD:</b> ${apd.length ? apd.join(", ") : "—"}
         </p>
-        `;
+    `;
     }
 
     const mesAtual = new Date().getMonth();
 
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
     const ferias = dadosFerias.filter(p => {
-        const inicio = new Date(p.inicio);
-        const fim = new Date(p.fim);
-        return inicio.getMonth() === mesAtual || fim.getMonth() === mesAtual;
 
-        function formatarData(data) {
-            return data.toLocaleDateString("pt-BR");
-        }
+        const inicio = new Date(p.inicio + "T00:00:00");
+        const fim = new Date(p.fim + "T23:59:59");
 
-        function obterSemanaAtual() {
-            const hoje = new Date();
-
-            const diaSemana = hoje.getDay();
-            const diff = hoje.getDate() - diaSemana + (diaSemana === 0 ? -6 : 1);
-
-            const segunda = new Date(hoje.setDate(diff));
-            const sexta = new Date(segunda);
-            sexta.setDate(segunda.getDate() + 4);
-
-            return {
-                inicio: formatarData(segunda),
-                fim: formatarData(sexta)
-            };
-        }
-        
+        return hoje >= inicio && hoje <= fim;
 
     });
 
     feriasDiv.innerHTML = ferias.length
-        ? ferias.map(p => `<p>${p.nome}</p>`).join("")
+        ? ferias.map(p => `
+        <p>
+            <strong>${p.nome}</strong><br>
+            ${formatarDataBR(p.inicio)} até ${formatarDataBR(p.fim)}
+        </p>
+    `).join("")
         : "<p>Ninguém de férias</p>";
 
     const aniversarios = dadosAniversarios.filter(p => p.mes === mesAtual + 1);
 
     anivDiv.innerHTML = aniversarios.length
-        ? aniversarios.map(p => `<p>${p.nome} (${p.dia})</p>`).join("")
-        : "<p>Nenhum</p>";
+        ? aniversarios
+            .sort((a, b) => a.dia - b.dia)
+            .map(p => `<p>${p.nome} - ${String(p.dia).padStart(2, "0")}</p>`)
+            .join("")
+        : "<p>Sem aniversariantes este mês.</p>";
 }
 
 function gerarPeriodoSemana() {
