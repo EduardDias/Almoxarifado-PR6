@@ -78,8 +78,9 @@ const dadosFerias = [
     { nome: "Farlei", inicio: "2026-07-22", fim: "2026-07-31" },
     { nome: "Farlei", inicio: "2026-09-08", fim: "2026-09-18" },
     { nome: "Carlos", inicio: "2026-05-04", fim: "2026-06-03" }
-] /* ==========================================
-   FÉRIAS - FUNÇÕES AUXILIARES
+];
+/* ==========================================
+  FÉRIAS - FUNÇÕES AUXILIARES
 ========================================== */
 
 function formatarDataBR(dataTexto) {
@@ -226,33 +227,53 @@ function carregarFerias() {
     lista.innerHTML = "";
 
     const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
+    const mesAtual = hoje.getMonth();
+    const anoAtual = hoje.getFullYear();
 
-    const feriasAtuais = dadosFerias.filter(p => {
+    const primeiroDia = new Date(anoAtual, mesAtual, 1);
+    const ultimoDia = new Date(anoAtual, mesAtual + 1, 0, 23, 59, 59);
+
+    const feriasMes = dadosFerias.filter(p => {
 
         const inicio = new Date(p.inicio + "T00:00:00");
         const fim = new Date(p.fim + "T23:59:59");
 
-        return hoje >= inicio && hoje <= fim;
+        // qualquer férias que aconteça em algum momento do mês
+        return inicio <= ultimoDia && fim >= primeiroDia;
 
     });
 
-    if (!feriasAtuais.length) {
+    feriasMes.sort((a,b)=>new Date(a.inicio)-new Date(b.inicio));
 
-        lista.innerHTML = "<li>Ninguém de férias.</li>";
+    if (feriasMes.length === 0){
+        lista.innerHTML="<li>Nenhuma férias neste mês.</li>";
         return;
-
     }
 
-    feriasAtuais.forEach(p => {
+    feriasMes.forEach(p=>{
+
+        const inicio = new Date(p.inicio+"T00:00:00");
+        const fim = new Date(p.fim+"T23:59:59");
+
+        let status="";
+
+        if(hoje>=inicio && hoje<=fim){
+            status="🟢 Em férias";
+        }else if(inicio>hoje){
+            status="🟡 Inicia em breve";
+        }else{
+            status="⚪ Encerradas";
+        }
 
         lista.innerHTML += `
-            <li>
-                <strong>${p.nome}</strong><br>
-                ${formatarDataBR(p.inicio)} até ${formatarDataBR(p.fim)}
-            </li>
+            <div class="card-ferias">
+                <strong>${p.nome}</strong>
+                <div class="periodo">
+                    ${formatarDataBR(p.inicio)} a ${formatarDataBR(p.fim)}
+                </div>
+                <div class="status">${status}</div>
+            </div>
         `;
-
     });
 
 }
@@ -332,28 +353,34 @@ function carregarResumo() {
     `;
     }
 
-    const mesAtual = new Date().getMonth();
+    // ===================== FÉRIAS DO MÊS =====================
 
-    const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
+const hoje = new Date();
 
-    const ferias = dadosFerias.filter(p => {
+const mesAtual = hoje.getMonth();
+const anoAtual = hoje.getFullYear();
 
-        const inicio = new Date(p.inicio + "T00:00:00");
-        const fim = new Date(p.fim + "T23:59:59");
+const primeiroDiaMes = new Date(anoAtual, mesAtual, 1);
+const ultimoDiaMes = new Date(anoAtual, mesAtual + 1, 0, 23, 59, 59);
 
-        return hoje >= inicio && hoje <= fim;
+const ferias = dadosFerias.filter(p => {
 
-    });
+    const inicio = new Date(p.inicio + "T00:00:00");
+    const fim = new Date(p.fim + "T23:59:59");
 
-    feriasDiv.innerHTML = ferias.length
-        ? ferias.map(p => `
+    // Mostra qualquer férias que aconteça em algum momento do mês atual
+    return inicio <= ultimoDiaMes && fim >= primeiroDiaMes;
+
+}).sort((a, b) => new Date(a.inicio) - new Date(b.inicio));
+
+feriasDiv.innerHTML = ferias.length
+    ? ferias.map(p => `
         <p>
             <strong>${p.nome}</strong><br>
-            ${formatarDataBR(p.inicio)} até ${formatarDataBR(p.fim)}
+            ${formatarDataBR(p.inicio)} a ${formatarDataBR(p.fim)}
         </p>
     `).join("")
-        : "<p>Ninguém de férias</p>";
+    : "<p>Nenhuma férias neste mês.</p>";
 
     const aniversarios = dadosAniversarios.filter(p => p.mes === mesAtual + 1);
 
