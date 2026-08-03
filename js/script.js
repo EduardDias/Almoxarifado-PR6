@@ -59,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
 ========================================== */
 
 const escalaHomeOffice = {
-    1: { servidores: ["Hedes", "Vladimir"], apd: ["Carlos"] },
-    2: { servidores: ["Philipe"], apd: ["Farlei"] },
-    3: { servidores: ["Hedes", "Vladimir", "Philipe"], apd: ["Carlos", "Farlei"] },
-    4: { servidores: ["Vladimir"], apd: ["Carlos"] },
-    5: { servidores: ["Hedes", "Philipe"], apd: ["Farlei"] }
+    1: { servidores: ["Hedes", "Vladimir"], apd: ["Vinicius"] },
+    2: { servidores: ["Hedes", "Philipe"], apd: ["Vinicius"] },
+    3: { servidores: ["Hedes", "Vladimir", "Philipe"], apd: ["Carlos", "Vinicius"] },
+    4: { servidores: ["Hedes", "Philipe"], apd: ["Carlos"] },
+    5: { servidores: ["Hedes", "Philipe"], apd: ["Carlos"] }
 };
 
 const dadosFerias = [
@@ -75,8 +75,8 @@ const dadosFerias = [
     { nome: "Vladimir", inicio: "2026-11-03", fim: "2026-11-12" },
     { nome: "Philipe", inicio: "2026-08-05", fim: "2026-08-14" },
     { nome: "Philipe", inicio: "2027-01-04", fim: "2027-01-13" },
-    { nome: "Farlei", inicio: "2026-07-22", fim: "2026-07-31" },
-    { nome: "Farlei", inicio: "2026-09-08", fim: "2026-09-18" },
+    { nome: "Vinicius", inicio: "", fim: "" },
+    { nome: "Vinicius", inicio: "", fim: "" },
     { nome: "Carlos", inicio: "2026-05-04", fim: "2026-06-03" }
 ];
 /* ==========================================
@@ -108,8 +108,8 @@ function estaDeFerias(nome) {
 const dadosAniversarios = [
     { nome: "Walmir", dia: 15, mes: 1 },
     { nome: "Delson", dia: 17, mes: 1 },
-    { nome: "Farlei", dia: 24, mes: 1 },
     { nome: "Marcia", dia: 8, mes: 2 },
+    { nome: "Vinicius", dia: 17, mes: 3 },
     { nome: "Osvaldo", dia: 6, mes: 4 },
     { nome: "Rodrigo", dia: 7, mes: 4 },
     { nome: "Carlos Eduardo", dia: 22, mes: 4 },
