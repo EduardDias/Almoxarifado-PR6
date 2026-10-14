@@ -62,7 +62,7 @@ const escalaHomeOffice = {
     1: { servidores: ["Hedes", "Vladimir"], apd: ["Carlos"] },
     2: { servidores: ["Philipe"], apd: ["Vinicius"] },
     3: { servidores: ["Hedes", "Vladimir", "Philipe"], apd: ["Carlos", "Vinicius"] },
-    4: { servidores: ["Philipe"], apd: ["Carlos"] },
+    4: { servidores: ["Vladimir"], apd: ["Carlos"] },
     5: { servidores: ["Hedes", "Philipe"], apd: ["Vinicius"] }
 };
 
@@ -120,7 +120,7 @@ const dadosAniversarios = [
     { nome: "Alexandre", dia: 26, mes: 6 },
     { nome: "Vladimir", dia: 4, mes: 7 },
     { nome: "Hedes", dia: 26, mes: 8 },
-    { nome: "Flávio", dia: 9, mes: 10 },
+    { nome: "Flávio", dia: 19, mes: 10 },
     { nome: "Marquinhos", dia: 25, mes: 10 },
     { nome: "Hedes", dia: 23, mes: 11 }
     
